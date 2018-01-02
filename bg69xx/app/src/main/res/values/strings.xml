@@ -3,4 +3,6 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="home_title">Museo Nacional Centro De Arte \"Reina Sofia\"</string>
+    <string name="home_intro">Although museums as public institutions remain important in the general scheme of creative industries, they have lost some of their influence, or at least their privileged position, in defining what is understood to be culture. Todays world of culture is shaped, on the one hand, by the prominent figures in the culture and communications industry and, on the other, by the diffuse magma of culture producers whose actions are governed by the subordination of their creative singularity. This subordination is manifested in artists having to sell their creative capacity or in their being expropriated of it.  In addition, we are in the midst of a systemic crisis to which the museum is not immune. If the economic paradigm based on speculation and easy money has proven unsustainable, it should also be clear that the primacy of the building and of art as spectacle over the museums artistic program has ceased to be valid.</string>
 </resources>

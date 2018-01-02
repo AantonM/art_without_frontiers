@@ -6,10 +6,60 @@
     android:layout_height="match_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeActivity">
+
+        <ImageView
+            android:id="@+id/imgHomeGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="Main image on home screen"
+            android:src="@drawable/reinasofia_main" />
+
+
+        <TextView
+            android:id="@+id/txtHomeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imgHomeGallery"
+            android:text="@string/home_title"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="19sp"
+            android:textStyle="bold|italic"
+            android:gravity="center"/>
+
+        <ScrollView
+            android:id="@+id/scrollIntro"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtHomeTitle"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
+
+            <TextView
+                android:id="@+id/txtHomeIntro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/scrollIntro"
+                android:text="@string/home_intro"
+                android:textAlignment="viewStart" />
+
+        </ScrollView>
 
     </RelativeLayout>
 
@@ -17,7 +67,7 @@
     android:id="@+id/navList"
     android:layout_width="200dp"
     android:layout_height="match_parent"
-    android:layout_gravity="left|start"
+    android:layout_gravity="start"
     android:background="#ffeeeeee"/>
 
 </android.support.v4.widget.DrawerLayout>

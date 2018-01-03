@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources name="artworks">
+
+    <!-- TEMPLATE -->
+    <!--
+    <string-array name="item_">
+    <item>ARTIST</item>
+    <item>TITLE</item>
+    <item>ROOM</item>
+    <item>DESCRIPTION</item>
+    <item>IMAGE</item>
+    <item>YEAR</item>
+    <item>RANK</item>
+    </string-array>
+    -->
+
+    <string-array name="item_1">
+        <item>Andrzej Wróblewski</item>
+        <item>Blue Chauffeur</item>
+        <item>Sabatini Building, Floor 2</item>
+        <item>The exhibition focuses on his double-sided paintings (painted on both sides: recto and verso), and presents mainly two different periods of his work: its beginnings at the end of the 1940s as he searched for his own painterly language, and the very end, when, disillusioned with the politics of real socialism, he attempted to redefine his work, both formally and thematically.</item>
+        <item>blue_chauffeur</item>
+        <item>1948</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="item_2">
+        <item>Andrzej Wróblewski</item>
+        <item>Sun and Other Stars</item>
+        <item>Sabatini Building, Floor 2</item>
+        <item>This exhibition, the first retrospective held outside his country, enables his work to be contemplated in a way that goes beyond the reductionist clichés of socialist realism or Outsider Art, through which art from countries in the Soviet sphere of influence has been studied until recently. Wróblewski was an artist that could work on the borders between abstraction and figuration, combining formal invention with the analysis of daily life and its limits.</item>
+        <item>sun_and_other_stars</item>
+        <item>1948</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="item_3">
+        <item>Pablo Picasso</item>
+        <item>The Absinthe Drinker</item>
+        <item>Sabatini Building, Floor 4</item>
+        <item>This exhibition brings together two leading collections of early modernist art that now form part of the holdings of the Kunstmuseum Basel (Basel, Switzerland), the Im Obersteg Collection and the Rudolf Staechelin Collection, offering an opportunity to enjoy works by the most reputed early modernist masters, the vast majority of which have never before been seen in Spain. It is moreover a chance to explore the phenomenon of collecting, with a focus on its centrality to the formation of modern art.</item>
+        <item>the_absinthe_drinker</item>
+        <item>1901</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="item_4">
+        <item>José de Almada Negreiros</item>
+        <item>Retrato de Fernando Pessoa</item>
+        <item>Sabatini Building. Floor 1</item>
+        <item>The prolific output of texts across one hundred plus heteronyms saw Pessoa forge his own avant-garde to become a peerless writer on the crisis of the modern subject and its convictions, transposing his work into a many-sided otherness akin to his own existential disorientation. </item>
+        <item>retrato_de_fernando_pessoa</item>
+        <item>1964</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="item_5">
+        <item>Pablo Picasso</item>
+        <item>Guernica</item>
+        <item>Sabatini Building, Floor 4</item>
+        <item>One writer said of Guernica that in it the world had been “changed into a furnished room, where all of us, gesticulating, wait for death”. Since 1937, generations of viewers across the globe have found the painting\'s image of terror indispensable – maybe even cathartic. This exhibition asks why. It is clear that Guernica \'s epic, compassionate treatment of violence moves beyond the dangerous fascination with the subject that had characterized much of Picasso\'s work during the late 1920s and early 1930s. But would Guernica have been possible without that previous fixation?</item>
+        <item>guernica</item>
+        <item>1937</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="item_6">
+        <item>Pablo Picasso</item>
+        <item>Woman Dressing Her Hair</item>
+        <item>Sabatini Building, Floor 2</item>
+        <item>When in early 1937 Pablo was asked to produce a painting for the Spanish Pavilion, he told the Republic\'s delegates that he was not sure he could do the kind of picture they wanted. The world of his art had been till then essentially intimate and personal, bound by the walls and windows of a room; he had almost never spoken to the public realm, still less to political events; since 1925 his art had often steered close, claustrophobically, to nightmare or monstrosity. Yet the painting he eventually did for the Republic spoke grandly to the new realities of war. And the scene of suffering and disorientation he showed us has lived on, as an emblem of the modern condition, for eight decades.</item>
+        <item>woman_dressing_her_hair</item>
+        <item>1940</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="item_7">
+        <item>Pablo Picasso</item>
+        <item>The Three Dancers</item>
+        <item>Sabatini Building, Floor 2</item>
+        <item>As part of this exhibition, a selection of results are presented, and serve as a historical counterpoint, from the research project Fondo Documental Guernica (Guernica Documentary Collection), spanning the period from 1937 to 1949.</item>
+        <item>the_three_dancers</item>
+        <item>1925</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="item_8">
+        <item>Juan Gris</item>
+        <item>La guitarra sobre la mesa</item>
+        <item>Sabatini Building. Floor 3</item>
+        <item>Jacques Lipchitz saw Cubism as a form of emancipation from all preceding artistic movements. Juan Gris believed that Cubism was not a manner but a state of mind, and that it was thus inescapably connected to every manifestation of contemporary thought. The protagonists of Cubism were well aware of the implications of their experience, and our present-day artistic consciousness unreservedly recognises Cubism as a cornerstone of modern art.</item>
+        <item>la_guitarra_sobre_la_mesa</item>
+        <item>1913</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="item_9">
+        <item>Juan Gris</item>
+        <item>La guitarra</item>
+        <item>Sabatini Building. Floor 3</item>
+        <item>Even so, the various views and narratives of the cubist experience are sometimes at odds with each other. We speak of “cubism” in singular but its creative space was plural. It would be more accurate to talk of “cubisms”. One particular, and quite possibly dominant, view is inclined to take a restrictive approach to the artists, the times, and the settings of the cubist experience.</item>
+        <item>la_guitarra</item>
+        <item>1918</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="item_10">
+        <item>Juan Gris</item>
+        <item>Vasos, periódico y botella de vino</item>
+        <item>Sabatini Building. Floor 3</item>
+        <item>The union of the Telefónica Cubist Collection and the cubist holdings at Museo Nacional Centro de Arte Reina Sofia supports this plural conception of the cubist experience. The union of the two collections also brings the work of Juan Gris to the fore in both the exhibition and the narrative. Thinking about the cubist experience inevitably means thinking about the pervasiveness of the work of Picasso and Braque.</item>
+        <item>vasos_periodico_y_botella_de_vino</item>
+        <item>1913</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="item_11">
+        <item>Jean Metzinger</item>
+        <item>Naturaleza muerta con fruta y jarra</item>
+        <item>Sabatini Building. Floor 3</item>
+        <item>Jacques Lipchitz saw Cubism as a form of emancipation from all preceding artistic movements. Juan Gris believed that Cubism was not a manner but a state of mind, and that it was thus inescapably connected to every manifestation of contemporary thought. The protagonists of Cubism were well aware of the implications of their experience, and our present-day artistic consciousness unreservedly recognises Cubism as a cornerstone of modern art.</item>
+        <item>naturaleza_muerta_con_fruta_y_jarra</item>
+        <item>1917</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="item_12">
+        <item>Paul Klee</item>
+        <item>Baldgreis</item>
+        <item>Sabatini Building, Floor 1</item>
+        <item>The Kunstmuseum Basel is considered one of the finest public municipal museums in the world. The two cornerstones of its collection are the works dating from the 15th and 16th centuries, on one side, and artworks from the 19th century to the 21st, on the other, with the ensemble of the latter making it one of the most significant collections of contemporary art in Europe.</item>
+        <item>baldgreis</item>
+        <item>1922</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="item_13">
+        <item>Fernand Léger</item>
+        <item>La femme en bleu</item>
+        <item>Sabatini Building, Floor 1</item>
+        <item>Coinciding with the closure of the Kunstmuseum Basel for the remodelling of its spaces, the Museo Reina Sofía will be showing a selection from the Kunstmuseum Basel’s important collection of modern and contemporary art, comprising more than a hundred works (paintings, sculptures, collages, photographs and videos).</item>
+        <item>la_femme_en_bleu</item>
+        <item>1912</item>
+        <item>2</item>
+    </string-array>
+</resources>

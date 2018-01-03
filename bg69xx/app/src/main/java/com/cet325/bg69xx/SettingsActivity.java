@@ -1,5 +1,6 @@
     package com.cet325.bg69xx;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -11,15 +12,27 @@ import java.util.List;
 
     public class SettingsActivity extends HomeActivity {
 
+    //TODO: save settings to file
+
+    /***
+     * Method called when this activity is created that set up the layout.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Settings");
         setContentView(R.layout.activity_settings);
 
+        //add records to the spinner
         populateCurrencySpinner();
     }
 
+    /***
+     * Method that add options to the currency spinner from the string-array:currency.
+     *
+     */
     private void populateCurrencySpinner() {
         List<String> spinnerArray =  Arrays.asList(getResources().getStringArray(R.array.currency));
 

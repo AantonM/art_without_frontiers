@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:contentDescription="Main image on home screen"
-            android:src="@drawable/reinasofia_main" />
+            android:src="@drawable/main_reinasofia" />
 
 
         <TextView

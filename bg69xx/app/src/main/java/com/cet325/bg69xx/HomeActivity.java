@@ -1,18 +1,25 @@
 package com.cet325.bg69xx;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -25,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     private String mActivityTitle;
 
     /***
-     * Method called when this activity is created.
+     * Method called when this activity is created that set up the layout.
      *
      * @param savedInstanceState
      */
@@ -47,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
     }
 
     /***
@@ -108,6 +116,11 @@ public class HomeActivity extends AppCompatActivity {
         //check if the navigation menu is selected
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             Toast.makeText(HomeActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
+        }
+
+        //TODO:Remove this listener and integrate the code within onCreate! This is just temp.
+        if(id == R.id.action_contacts) {
+            DatabaseInitialisation di = new DatabaseInitialisation(this);
         }
 
         //check if the contacts option is selected

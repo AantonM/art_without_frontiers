@@ -6,7 +6,7 @@
 
     <item android:id="@+id/tickets"
         android:title="Tickets"
-        android:icon="@drawable/ticket_icon_w"
+        android:icon="@drawable/icon_ticket_w"
         app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_settings"

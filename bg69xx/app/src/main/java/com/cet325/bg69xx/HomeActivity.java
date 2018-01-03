@@ -1,5 +1,6 @@
 package com.cet325.bg69xx;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getSupportActionBar().setTitle("Reina Sofia");
+
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.navigation_drawer_layout);
         mActivityTitle = getTitle().toString();
@@ -39,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
 
         createNavigationMenuOptions();
         setupDrawer();
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -49,12 +54,15 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void createNavigationMenuOptions() {
         String[] osArray = { "View paintings", "Exhibitions", "Gallery map", "Open hours", "Location"};
+        Toast.makeText(HomeActivity.this, "ND created", Toast.LENGTH_SHORT).show();
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HomeActivity.this, "Cool", Toast.LENGTH_SHORT).show();
+                if(position == 0){
+                    Toast.makeText(HomeActivity.this, "View Paintings", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -62,13 +70,16 @@ public class HomeActivity extends AppCompatActivity {
     /***
      * Handles the Navigation Drawer's behaviour when opening and closing.
      */
-    private void setupDrawer() {
+    protected void setupDrawer() {
+        Toast.makeText(HomeActivity.this, "kon", Toast.LENGTH_SHORT).show();
+
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when the Navagation drawe is opened. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+                Toast.makeText(HomeActivity.this, "onDrawerOpened", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle("Navigation");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -76,13 +87,11 @@ public class HomeActivity extends AppCompatActivity {
             /** Called when the Navagation drawe is closed. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
+                Toast.makeText(HomeActivity.this, "onDrawerClosed", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle(mActivityTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
-
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     /***
@@ -96,12 +105,21 @@ public class HomeActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
+        //check if the navigation menu is selected
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            Toast.makeText(HomeActivity.this, "Pena", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
         }
 
-        if(id == R.id.action_contacts) {
-            Toast.makeText(HomeActivity.this, "Kon", Toast.LENGTH_SHORT).show();
+        //check if the contacts option is selected
+        if(id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+        }
+
+        //check if the tickets button is selected
+        if(id == R.id.tickets) {
+            Intent ticketsIntent = new Intent(this, TicketsActivity.class);
+            startActivity(ticketsIntent);
         }
 
         return true;
@@ -115,17 +133,19 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        Toast.makeText(HomeActivity.this, "onPostCreate", Toast.LENGTH_SHORT).show();
         mDrawerToggle.syncState();
     }
 
     /***
-     * Change the stae of the Drawer.
+     * Change the state of the Drawer.
      *
      * @param newConfig
      */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        Toast.makeText(HomeActivity.this, "onConfigurationChanged", Toast.LENGTH_SHORT).show();
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 

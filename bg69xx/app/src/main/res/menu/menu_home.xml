@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HomeActivity">
 
+    <item android:id="@+id/tickets"
+        android:title="Tickets"
+        android:icon="@drawable/ticket_icon_w"
+        app:showAsAction="ifRoom"/>
+
     <item android:id="@+id/action_settings"
         android:title="Settings"
         android:orderInCategory="1"

@@ -15,7 +15,7 @@ import java.util.List;
 /***
  * Class that creates stock records for 13 artworks.
  */
-public class DatabaseInitialisation extends HomeActivity {
+public class DatabaseStockPopulation extends HomeActivity {
 
     private static List<List<String>> artworksList;
 
@@ -23,9 +23,9 @@ public class DatabaseInitialisation extends HomeActivity {
         return artworksList;
     }
 
-    public DatabaseInitialisation(Context currentContext, SQLiteDatabase db, String tableExhibits){
-        readStockExhibitions(currentContext);
-        insertStockExhibitions(currentContext, tableExhibits, db);
+    public DatabaseStockPopulation(Context currentContext, SQLiteDatabase db, String tableArtworks){
+        readStockArtworks(currentContext);
+        insertStockArtworks(currentContext, tableArtworks, db);
     }
 
 
@@ -34,7 +34,7 @@ public class DatabaseInitialisation extends HomeActivity {
      *
      * @param current
      */
-    private void readStockExhibitions(Context current){
+    private void readStockArtworks(Context current){
 
         artworksList = new ArrayList<>();
         artworksList.add(Arrays.asList(current.getResources().getStringArray(R.array.item_1)));
@@ -57,14 +57,14 @@ public class DatabaseInitialisation extends HomeActivity {
     }
 
     /***
-     * Method that inserts 13 stock exhibitions to the database.
+     * Method that inserts 13 stock artworks to the database.
      *
      * @param current
-     * @param tableExhibits
+     * @param tableArtworks
      * @param db
      */
-    private void insertStockExhibitions(Context current, String tableExhibits, SQLiteDatabase db) {
-        StringBuilder insertQuery = new StringBuilder("INSERT INTO " + tableExhibits + "(artist, title, room, description, image, year, rank) VALUES ");
+    private void insertStockArtworks(Context current, String tableArtworks, SQLiteDatabase db) {
+        StringBuilder insertQuery = new StringBuilder("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank) VALUES ");
 
         //iterate trough all artworks
         for(int i =0; i < artworksList.size(); i++) {
@@ -78,7 +78,7 @@ public class DatabaseInitialisation extends HomeActivity {
             byte[] imgBytes = imgBitmapToByteArray(imageBitmap);
 
             //insert the artwork to the database
-            db.execSQL("INSERT INTO " + tableExhibits + "(artist, title, room, description, image, year, rank) VALUES (?,?,?,?,?,?,?)",
+            db.execSQL("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank) VALUES (?,?,?,?,?,?,?)",
                     new Object[]{artworksList.get(i).get(0),
                             artworksList.get(i).get(1),
                             artworksList.get(i).get(2),

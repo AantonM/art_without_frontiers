@@ -3,11 +3,11 @@ package com.cet325.bg69xx;
 import android.graphics.Bitmap;
 
 /***
- * Class that maps the Exhibits database.
+ * Class that maps the Artworks database.
  * It contains fields for the pictures Artist, Title, Room, Description, Image, Year and Rank.
  *
  */
-public class ExhibitsDbMapper {
+public class ArtworksDbMapper {
     //“Artist”, “Title”, “Room” “Description”, “Image”, “Year” and “Rank”.
     public int id;
     public String artist;
@@ -18,9 +18,9 @@ public class ExhibitsDbMapper {
     public String year;
     public int rank;
 
-    public ExhibitsDbMapper(){}
+    public ArtworksDbMapper(){}
 
-    public ExhibitsDbMapper(String artist, String title, String room, String description, byte[] image, String year, Integer rank){
+    public ArtworksDbMapper(String artist, String title, String room, String description, byte[] image, String year, Integer rank){
         this.artist = artist;
         this.title = title;
         this.room = room;

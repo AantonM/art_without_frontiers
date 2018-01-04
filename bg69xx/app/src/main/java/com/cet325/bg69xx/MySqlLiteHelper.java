@@ -2,10 +2,12 @@ package com.cet325.bg69xx;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /***
@@ -16,9 +18,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     //Database details
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ReinaSofiaDB";
-    private static final String TABLE_EXHIBITS = "allExhibits";
+    private static final String TABLE_ARTWORKS = "allArtworks";
 
-    //Definition of the "allExhibits" attributes
+    //Definition of the "allArtworks" attributes
     private static final String KEY_ID = "id";
     private static final String KEY_ARTIST = "artist";
     private static final String KEY_TITLE = "title";
@@ -37,13 +39,13 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     /***
-     * Method that creates the "allExhibits" table and insert stock records.
+     * Method that creates the "allArtworks" table and insert stock records.
      *
      * @param db
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createAllExhibitsQuery = "CREATE TABLE " + TABLE_EXHIBITS + " ( " +
+        String createAllArtworksQuery = "CREATE TABLE " + TABLE_ARTWORKS + " ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "artist TEXT, " +
                 "title TEXT, " +
@@ -53,14 +55,14 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 "year TEXT, " +
                 "rank INTEGER )";
 
-        db.execSQL(createAllExhibitsQuery);
+        db.execSQL(createAllArtworksQuery);
 
         //insert numerous stock records of artworks.
-        DatabaseInitialisation di = new DatabaseInitialisation(currentContext, db, TABLE_EXHIBITS);
+        DatabaseStockPopulation di = new DatabaseStockPopulation(currentContext, db, TABLE_ARTWORKS);
     }
 
     /***
-     *  Method that deletes the "allExhibits" table and creates a clean new one by calling onCreate.
+     *  Method that deletes the "allArtworks" table and creates a clean new one by calling onCreate.
      *
      * @param db
      * @param oldVersion
@@ -68,16 +70,16 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXHIBITS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ARTWORKS);
         this.onCreate(db);
     }
 
     /***
-     * Method that inserts new record into "allExhibits" table.
+     * Method that inserts new record into "allArtworks" table.
      *
      * @param artwork
      */
-    public void addArtwork(ExhibitsDbMapper artwork){
+    public void addArtwork(ArtworksDbMapper artwork){
         Log.d("addArtwork-1: ", artwork.toString());
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -93,7 +95,38 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         values.put(KEY_YEAR, artwork.year);
         values.put(KEY_RANK, artwork.rank);
 
-        db.insert(TABLE_EXHIBITS, null, values);
+        db.insert(TABLE_ARTWORKS, null, values);
         db.close();
+    }
+
+    public List<ArtworksDbMapper> getAllArtworks(){
+        ArtworksDbMapper artwork = null;
+        List<ArtworksDbMapper> artworksList = new LinkedList<ArtworksDbMapper>();
+
+        String query = "SELECT * FROM " + TABLE_ARTWORKS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                artwork = new ArtworksDbMapper();
+                artwork.artist = cursor.getString(0);
+                artwork.title = cursor.getString(1);
+                artwork.room = cursor.getString(2);
+                artwork.description = cursor.getString(3);
+                artwork.image = cursor.getBlob(4);
+                artwork.year = cursor.getString(5);
+                artwork.rank = Integer.parseInt(cursor.getString(6));
+
+                //add to list
+                artworksList.add(artwork);
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        Log.d("getAllArtworks: ", "All artworks loaded");
+
+        return artworksList;
     }
 }

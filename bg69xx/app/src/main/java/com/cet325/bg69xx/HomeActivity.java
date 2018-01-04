@@ -42,7 +42,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         getSupportActionBar().setTitle("Reina Sofia");
 
+        //make a test database connection
+        databaseInitialisation();
 
+        //creation of the right navigation bar
         mDrawerLayout = (DrawerLayout)findViewById(R.id.navigation_drawer_layout);
         mActivityTitle = getTitle().toString();
         mDrawerList = (ListView)findViewById(R.id.navList);
@@ -54,8 +57,19 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-
     }
+
+    /***
+     * This method makes a test database connection.
+     * If the database doesn't exit it will create a new one and populate it with the stock artwork values.
+     * If the database exist it will close the connection without doing anything.
+     */
+    private void databaseInitialisation() {
+        MySqlLiteHelper db = new MySqlLiteHelper(this);
+        db.getWritableDatabase();
+        db.close();
+    }
+
 
     /***
      * Creates the elements of the Navigation Drawer.
@@ -116,14 +130,6 @@ public class HomeActivity extends AppCompatActivity {
         //check if the navigation menu is selected
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             Toast.makeText(HomeActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
-        }
-
-        //TODO:Remove this listener and integrate the code within onCreate! This is just temp.
-        if(id == R.id.action_contacts) {
-            MySqlLiteHelper db = new MySqlLiteHelper(this);
-            db.getWritableDatabase();
-//            db.addArtwork(new ArtworksDbMapper("a","b","c","d",null,"1000",5));
-            db.close();
         }
 
         //check if the contacts option is selected

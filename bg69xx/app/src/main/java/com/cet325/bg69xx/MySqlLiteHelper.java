@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.List;
+
 /***
  * Class used to handle the SqlLite Database - CRUD
  */
@@ -26,13 +28,16 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_YEAR = "year";
     private static final String KEY_RANK = "rank";
 
+    private static Context currentContext;
+
 
     public MySqlLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        currentContext = context;
     }
 
     /***
-     * Method that creates that "allExhibits" table.
+     * Method that creates the "allExhibits" table and insert stock records.
      *
      * @param db
      */
@@ -50,6 +55,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL(createAllExhibitsQuery);
 
+        //insert numerous stock records of artworks.
+        DatabaseInitialisation di = new DatabaseInitialisation(currentContext, db, TABLE_EXHIBITS);
     }
 
     /***
@@ -77,7 +84,6 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         String path = db.getPath();
         Log.d("addArtwork-2: ", path);
 
-        //TODO: insert image into the db instead of string
         ContentValues values = new ContentValues();
         values.put(KEY_ARTIST, artwork.artist);
         values.put(KEY_TITLE, artwork.title);

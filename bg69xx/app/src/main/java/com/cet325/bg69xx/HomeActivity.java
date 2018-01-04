@@ -120,7 +120,9 @@ public class HomeActivity extends AppCompatActivity {
 
         //TODO:Remove this listener and integrate the code within onCreate! This is just temp.
         if(id == R.id.action_contacts) {
-            DatabaseInitialisation di = new DatabaseInitialisation(this);
+            MySqlLiteHelper db = new MySqlLiteHelper(this);
+            db.addArtwork(new ExhibitsDbMapper("a","b","c","d",null,"1000",5));
+            db.close();
         }
 
         //check if the contacts option is selected

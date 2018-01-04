@@ -2,6 +2,7 @@ package com.cet325.bg69xx;
 
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -11,16 +12,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/***
+ * Class that creates stock records for 13 artworks.
+ */
 public class DatabaseInitialisation extends HomeActivity {
 
     private static List<List<String>> artworksList;
 
-    public DatabaseInitialisation(Context currentContext){
-        createStockExhibitions(currentContext);
-        saveArtworks(currentContext);
+    public List<List<String>> getArtworksList(){
+        return artworksList;
     }
 
-    public void createStockExhibitions(Context current){
+    public DatabaseInitialisation(Context currentContext, SQLiteDatabase db, String tableExhibits){
+        readStockExhibitions(currentContext);
+        insertStockExhibitions(currentContext, tableExhibits, db);
+    }
+
+
+    /***
+     * Creates a list of all artworks from artworks.xml
+     *
+     * @param current
+     */
+    private void readStockExhibitions(Context current){
 
         artworksList = new ArrayList<>();
         artworksList.add(Arrays.asList(current.getResources().getStringArray(R.array.item_1)));
@@ -42,32 +56,48 @@ public class DatabaseInitialisation extends HomeActivity {
         Log.d("artist:", String.valueOf(artworksList.get(1).get(1)));
     }
 
-    private void saveArtworks(Context current) {
-        MySqlLiteHelper db = new MySqlLiteHelper(current);
+    /***
+     * Method that inserts 13 stock exhibitions to the database.
+     *
+     * @param current
+     * @param tableExhibits
+     * @param db
+     */
+    private void insertStockExhibitions(Context current, String tableExhibits, SQLiteDatabase db) {
+        StringBuilder insertQuery = new StringBuilder("INSERT INTO " + tableExhibits + "(artist, title, room, description, image, year, rank) VALUES ");
 
+        //iterate trough all artworks
         for(int i =0; i < artworksList.size(); i++) {
+            //get the full path of the artwork image
             String imageURI = "drawable/artwork_" + artworksList.get(i).get(4);
+            //get the id of the image
             int imageResource = current.getResources().getIdentifier(imageURI, null, current.getPackageName());
+            //create a bitmap of the image
             Bitmap imageBitmap = BitmapFactory.decodeResource(current.getResources(), imageResource);
-
+            //convert the image to array of bytes
             byte[] imgBytes = imgBitmapToByteArray(imageBitmap);
 
-            ExhibitsDbMapper exhibitsDbMapper = new ExhibitsDbMapper(artworksList.get(i).get(0),
-                    artworksList.get(i).get(1),
-                    artworksList.get(i).get(2),
-                    artworksList.get(i).get(3),
-                    imgBytes,
-                    artworksList.get(i).get(5),
-                    Integer.valueOf(artworksList.get(i).get(6)));
+            //insert the artwork to the database
+            db.execSQL("INSERT INTO " + tableExhibits + "(artist, title, room, description, image, year, rank) VALUES (?,?,?,?,?,?,?)",
+                    new Object[]{artworksList.get(i).get(0),
+                            artworksList.get(i).get(1),
+                            artworksList.get(i).get(2),
+                            artworksList.get(i).get(3),
+                            imgBytes,
+                            artworksList.get(i).get(5),
+                            Integer.valueOf(artworksList.get(i).get(6))});
 
-            db.addArtwork(exhibitsDbMapper);
+            Log.d("db status: ", "Add - " + artworksList.get(i).get(1));
         }
-        db.close();
         Log.d("db status: ", "DONE creating records.");
     }
 
-    // convert from bitmap to byte array
-    public static byte[] imgBitmapToByteArray(Bitmap bitmap) {
+    /***
+     * Convert bitmap to array of bytes which can be saved into the database as BLOB
+     * @param bitmap
+     * @return an image as array of bytes.
+     */
+    private static byte[] imgBitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
         return stream.toByteArray();

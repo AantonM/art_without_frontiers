@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
  *
  */
 public class ArtworksDbMapper {
-    //“Artist”, “Title”, “Room” “Description”, “Image”, “Year” and “Rank”.
+    //"ID", “Artist”, “Title”, “Room” “Description”, “Image”, “Year” and “Rank”.
     public int id;
     public String artist;
     public String title;

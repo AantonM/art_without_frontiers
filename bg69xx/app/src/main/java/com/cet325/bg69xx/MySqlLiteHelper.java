@@ -111,13 +111,14 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 artwork = new ArtworksDbMapper();
-                artwork.artist = cursor.getString(0);
-                artwork.title = cursor.getString(1);
-                artwork.room = cursor.getString(2);
-                artwork.description = cursor.getString(3);
-                artwork.image = cursor.getBlob(4);
-                artwork.year = cursor.getString(5);
-                artwork.rank = Integer.parseInt(cursor.getString(6));
+                artwork.id = Integer.valueOf(cursor.getString(0));
+                artwork.artist = cursor.getString(1);
+                artwork.title = cursor.getString(2);
+                artwork.room = cursor.getString(3);
+                artwork.description = cursor.getString(4);
+                artwork.image = cursor.getBlob(5);
+                artwork.year = cursor.getString(6);
+                artwork.rank = Integer.parseInt(cursor.getString(7));
 
                 //add to list
                 artworksList.add(artwork);

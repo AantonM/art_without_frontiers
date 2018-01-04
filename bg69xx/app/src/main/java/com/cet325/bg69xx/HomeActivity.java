@@ -76,14 +76,16 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void createNavigationMenuOptions() {
         String[] osArray = { "View paintings", "Exhibitions", "Gallery map", "Open hours", "Location"};
-        Toast.makeText(HomeActivity.this, "ND created", Toast.LENGTH_SHORT).show();
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
+
+        //listener for option selected from the drawer meny
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
-                    Toast.makeText(HomeActivity.this, "View Paintings", Toast.LENGTH_SHORT).show();
+                    Intent artworksListIntent = new Intent(view.getContext(), MasterArtworksListActivity.class);
+                    startActivity(artworksListIntent);
                 }
             }
         });
@@ -93,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
      * Handles the Navigation Drawer's behaviour when opening and closing.
      */
     protected void setupDrawer() {
-        Toast.makeText(HomeActivity.this, "kon", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeActivity.this, "setupDrawer", Toast.LENGTH_SHORT).show();
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
@@ -155,7 +157,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        Toast.makeText(HomeActivity.this, "onPostCreate", Toast.LENGTH_SHORT).show();
         mDrawerToggle.syncState();
     }
 
@@ -167,7 +168,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Toast.makeText(HomeActivity.this, "onConfigurationChanged", Toast.LENGTH_SHORT).show();
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 

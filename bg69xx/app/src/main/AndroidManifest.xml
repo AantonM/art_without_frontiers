@@ -12,15 +12,19 @@
             android:label="@string/title_activity_home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".TicketsActivity"
-            android:label="@string/title_activity_tickets"></activity>
-        <activity android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
-
+            android:label="@string/title_activity_tickets" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".MasterArtworksListActivity"
+            android:label="@string/title_activity_master_artworks_list"></activity>
     </application>
 
 </manifest>

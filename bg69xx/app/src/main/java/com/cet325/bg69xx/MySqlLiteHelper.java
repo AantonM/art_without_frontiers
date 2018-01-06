@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.util.LinkedList;
@@ -127,7 +129,11 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
         cursor.close();
         Log.d("getAllArtworks: ", "All artworks loaded");
+        db.close();
 
         return artworksList;
+    }
+    private static Bitmap ByteArrayToBitmapImg(byte[] imgByte) {
+        return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
     }
 }

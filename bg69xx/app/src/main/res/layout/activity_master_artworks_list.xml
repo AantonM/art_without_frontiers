@@ -4,6 +4,15 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <Spinner
+        android:id="@+id/spnSort"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#66AEFF"
+        android:spinnerMode="dialog"
+        android:text="Sort list by:"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/lstArtworks"
         android:layout_width="fill_parent"

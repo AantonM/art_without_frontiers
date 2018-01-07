@@ -89,20 +89,24 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         Log.d("addArtwork-2: ", path);
 
         ContentValues values = new ContentValues();
-        values.put(KEY_ARTIST, artwork.artist);
-        values.put(KEY_TITLE, artwork.title);
-        values.put(KEY_ROOM, artwork.room);
-        values.put(KEY_DESCRIPTION, artwork.description);
-        values.put(KEY_IMAGE, artwork.image);
-        values.put(KEY_YEAR, artwork.year);
-        values.put(KEY_RANK, artwork.rank);
+        values.put(KEY_ARTIST, artwork.getArtist());
+        values.put(KEY_TITLE, artwork.getTitle());
+        values.put(KEY_ROOM, artwork.getRoom());
+        values.put(KEY_DESCRIPTION, artwork.getDescription());
+        values.put(KEY_IMAGE, artwork.getImage());
+        values.put(KEY_YEAR, artwork.getYear());
+        values.put(KEY_RANK, artwork.getRank());
 
         db.insert(TABLE_ARTWORKS, null, values);
         db.close();
     }
 
+    /***
+     * Method that gets all Artworks from the database.
+     *
+     * @param artwork
+     */
     public List<ArtworksDbMapper> getAllArtworks(){
-        ArtworksDbMapper artwork = null;
         List<ArtworksDbMapper> artworksList = new LinkedList<ArtworksDbMapper>();
 
         String query = "SELECT * FROM " + TABLE_ARTWORKS;
@@ -112,18 +116,18 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                artwork = new ArtworksDbMapper();
-                artwork.id = Integer.valueOf(cursor.getString(0));
-                artwork.artist = cursor.getString(1);
-                artwork.title = cursor.getString(2);
-                artwork.room = cursor.getString(3);
-                artwork.description = cursor.getString(4);
-                artwork.image = cursor.getBlob(5);
-                artwork.year = cursor.getString(6);
-                artwork.rank = Integer.parseInt(cursor.getString(7));
+                int id = Integer.valueOf(cursor.getString(0));
+                String artist = cursor.getString(1);
+                String title = cursor.getString(2);
+                String room = cursor.getString(3);
+                String description = cursor.getString(4);
+                byte[] image = cursor.getBlob(5);
+                String year = cursor.getString(6);
+                int rank = Integer.parseInt(cursor.getString(7));
+
 
                 //add to list
-                artworksList.add(artwork);
+                artworksList.add(new ArtworksDbMapper(id, artist, title, room, description, image, year, rank));
             }while (cursor.moveToNext());
         }
 
@@ -133,6 +137,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
 
         return artworksList;
     }
+
     private static Bitmap ByteArrayToBitmapImg(byte[] imgByte) {
         return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
     }

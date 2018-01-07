@@ -10,96 +10,98 @@
         android:id="@+id/txtPriceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="15dp"
         android:text="Tickets"
-        android:layout_marginLeft="5dp"
+        android:textColor="#000000"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="#000000"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
         android:id="@+id/tablePrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="100dp">
 
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:paddingRight="50dp"
                 android:text="Adult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:paddingRight="50dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
-                android:text="£"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/txtAdult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:textSize="20sp"/>
+                android:text="£"
+                android:textSize="20sp" />
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:paddingRight="50dp"
                 android:text="Child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:paddingRight="50dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
-                android:text="£"
+                android:id="@+id/txtChild"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtChild"
                 android:layout_column="2"
-                android:textSize="20sp"/>
+                android:text="£"
+                android:textSize="20sp" />
 
         </TableRow>
+
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="Student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:paddingRight="50dp"
-                android:textSize="20sp"/>
+                android:text="Student"
+                android:textSize="20sp" />
 
             <TextView
-                android:text="£"
+                android:id="@+id/txtStudent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtStudent"
                 android:layout_column="2"
-                android:textSize="20sp"/>
+                android:text="£"
+                android:textSize="20sp" />
 
         </TableRow>
     </TableLayout>
 
     <TextView
-        android:text="*The currency can be modified from the application settings."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tablePrice"
         android:layout_column="1"
-        android:textStyle="italic"
-        android:paddingRight="70dp"
-        android:textSize="20sp"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="15dp"
-        android:layout_below="@id/tablePrice"/>
+        android:layout_marginTop="30dp"
+        android:paddingRight="70dp"
+        android:text="*The currency can be modified from the application settings."
+        android:textSize="20sp"
+        android:textStyle="italic" />
 
 </RelativeLayout>

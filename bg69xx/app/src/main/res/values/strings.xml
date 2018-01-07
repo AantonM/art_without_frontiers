@@ -8,4 +8,5 @@
     <string name="title_activity_tickets">TicketsActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_master_artworks_list">MasterArtworksListActivity</string>
+    <string name="title_activity_detailed_artwork_view">DetailedArtworkView</string>
 </resources>

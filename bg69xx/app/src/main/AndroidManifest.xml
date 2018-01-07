@@ -2,12 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cet325.bg69xx">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:largeHeap="true">
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home">
@@ -25,7 +28,10 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".MasterArtworksListActivity"
-            android:label="@string/title_activity_master_artworks_list"></activity>
+            android:label="@string/title_activity_master_artworks_list" />
+        <activity
+            android:name=".AddArtworkActivity"
+            android:label="@string/title_activity_detailed_artwork_view"></activity>
     </application>
 
 </manifest>

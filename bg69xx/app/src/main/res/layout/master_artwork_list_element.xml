@@ -2,8 +2,8 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="false"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="false">
 
     <TableRow
         android:layout_width="match_parent"
@@ -14,9 +14,9 @@
             android:id="@+id/imgArtwork"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:contentDescription="Image of the artwork."
             android:background="#D9D9D9"
-            android:focusable="false"/>
+            android:contentDescription="Image of the artwork."
+            android:focusable="false" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,49 +27,49 @@
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:ellipsize="none"
+                android:focusable="false"
+                android:inputType="textMultiLine"
                 android:maxLines="2"
                 android:scrollHorizontally="false"
                 android:text="Artwork Title"
-                android:inputType="textMultiLine"
-                android:textSize="20sp"
-                android:focusable="false"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txtArtist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="60dp"
+                android:focusable="false"
                 android:text="Artist name"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                android:focusable="false"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="80dp"
+                android:focusable="false"
                 android:text="Artist year"
                 android:textSize="15sp"
-                android:textStyle="italic"
-                android:focusable="false"/>
+                android:textStyle="italic" />
 
             <RatingBar
                 android:id="@+id/ratingBarMaster"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
+                android:focusable="false"
                 android:numStars="5"
-                android:stepSize="1.0"
                 android:scaleX="0.75"
                 android:scaleY="0.75"
-                android:transformPivotX="0dp"
-                android:focusable="false"/>
+                android:stepSize="1.0"
+                android:transformPivotX="0dp" />
 
         </RelativeLayout>
 

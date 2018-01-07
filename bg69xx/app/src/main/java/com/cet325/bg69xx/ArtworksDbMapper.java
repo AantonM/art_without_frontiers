@@ -1,7 +1,5 @@
 package com.cet325.bg69xx;
 
-import android.graphics.Bitmap;
-
 /***
  * Class that maps the Artworks database.
  * It contains fields for the pictures Artist, Title, Room, Description, Image, Year and Rank.
@@ -9,14 +7,14 @@ import android.graphics.Bitmap;
  */
 public class ArtworksDbMapper {
     //"ID", “Artist”, “Title”, “Room” “Description”, “Image”, “Year” and “Rank”.
-    public int id;
-    public String artist;
-    public String title;
-    public String room;
-    public String description;
-    public byte[] image;
-    public String year;
-    public int rank;
+    private int id;
+    private String artist;
+    private String title;
+    private String room;
+    private String description;
+    private byte[] image;
+    private String year;
+    private int rank;
 
     public ArtworksDbMapper(){}
 
@@ -30,8 +28,51 @@ public class ArtworksDbMapper {
         this.rank = rank;
     }
 
+    public ArtworksDbMapper(int id, String artist, String title, String room, String description, byte[] image, String year, Integer rank){
+        this.id = id;
+        this.artist = artist;
+        this.title = title;
+        this.room = room;
+        this.description = description;
+        this.image = image;
+        this.year = year;
+        this.rank = rank;
+    }
+
     @Override
     public String toString(){
-        return "Artwork [id=" + id + ", title=" + title + ", room=" + room + ", description=" + description + ", image=" + image + ", year=" + year + ", rank=" + rank;
+        return "Artwork [id=" + getId() + ", title=" + getTitle() + ", room=" + getRoom() + ", description=" + getDescription() + ", image=" + getImage() + ", year=" + getYear() + ", rank=" + getRank();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public int getRank() {
+        return rank;
     }
 }

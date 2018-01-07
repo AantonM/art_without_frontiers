@@ -1,8 +1,10 @@
 package com.cet325.bg69xx;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +34,8 @@ public class MasterArtworksListActivity extends HomeActivity {
 
         //create the sort spinner
         createSortSpinner();
+        //create floating action button - add
+        createFloatingAddBtn();
         //get all artworks from the database
         loadAllArtworks();
         //display the list into a listview
@@ -81,7 +85,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object1.title.compareTo(object2.title);
+                        return object1.getTitle().compareTo(object2.getTitle());
                     }
                 });
                 break;
@@ -90,7 +94,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object2.title.compareTo(object1.title);
+                        return object2.getTitle().compareTo(object1.getTitle());
                     }
                 });
                 break;
@@ -99,7 +103,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object1.artist.compareTo(object2.artist);
+                        return object1.getArtist().compareTo(object2.getArtist());
                     }
                 });
                 break;
@@ -108,7 +112,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object2.artist.compareTo(object1.artist);
+                        return object2.getArtist().compareTo(object1.getArtist());
                     }
                 });
                 break;
@@ -117,7 +121,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object1.year.compareTo(object2.year);
+                        return object1.getYear().compareTo(object2.getYear());
                     }
                 });
                 break;
@@ -126,7 +130,7 @@ public class MasterArtworksListActivity extends HomeActivity {
                 Collections.sort(artworksList, new Comparator<ArtworksDbMapper>() {
                     @Override
                     public int compare(ArtworksDbMapper object1, ArtworksDbMapper object2) {
-                        return object2.year.compareTo(object1.year);
+                        return object2.getYear().compareTo(object1.getYear());
                     }
                 });
                 break;
@@ -137,12 +141,26 @@ public class MasterArtworksListActivity extends HomeActivity {
     }
 
     /***
+     * Create onClick listener on the floating add btn
+     */
+    private void createFloatingAddBtn() {
+        FloatingActionButton floatingAddBtn = (FloatingActionButton) findViewById(R.id.floatingMasterAdd);
+        floatingAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addArtworkIntent = new Intent(v.getContext(), AddArtworkActivity.class);
+                startActivity(addArtworkIntent);
+            }
+        });
+    }
+
+    /***
      * Get all artworks from the db
      */
     private void loadAllArtworks() {
         MySqlLiteHelper db = new MySqlLiteHelper(this);
         artworksList = db.getAllArtworks();
-
+        db.close();
     }
 
     /***
@@ -159,11 +177,11 @@ public class MasterArtworksListActivity extends HomeActivity {
 
         //extract the data from the Master list into sublists
         for(int a = 0; a < artworksList.size(); a++){
-            lstArtist.add(artworksList.get(a).artist);
-            lstTitles.add(artworksList.get(a).title);
-            lstBitmapImages.add(ByteArrayToBitmapImgList(artworksList.get(a).image));
-            lstYear.add(artworksList.get(a).year);
-            lstRank.add(artworksList.get(a).rank);
+            lstArtist.add(artworksList.get(a).getArtist());
+            lstTitles.add(artworksList.get(a).getTitle());
+            lstBitmapImages.add(ByteArrayToBitmapImgList(artworksList.get(a).getImage()));
+            lstYear.add(artworksList.get(a).getYear());
+            lstRank.add(artworksList.get(a).getRank());
         }
 
         //send the data to a custom array list
@@ -174,6 +192,7 @@ public class MasterArtworksListActivity extends HomeActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO: Open the specific detailed view
                 Toast.makeText(MasterArtworksListActivity.this, "You Clicked item number: " + position, Toast.LENGTH_SHORT).show();
             }
         });

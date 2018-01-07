@@ -11,7 +11,8 @@
         android:background="#66AEFF"
         android:spinnerMode="dialog"
         android:text="Sort list by:"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="false"/>
 
     <ListView
         android:id="@+id/lstArtworks"

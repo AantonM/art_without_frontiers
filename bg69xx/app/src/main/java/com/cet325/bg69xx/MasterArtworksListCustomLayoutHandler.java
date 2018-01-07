@@ -39,11 +39,11 @@ public class MasterArtworksListCustomLayoutHandler extends ArrayAdapter<String>{
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView= inflater.inflate(R.layout.master_artwork_list_element, null, true);
 
-        TextView txtArtisti = (TextView) rowView.findViewById(R.id.txtArtist);
-        txtArtisti.setText(artist.get(position));
-
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txtTitle);
         txtTitle.setText(title.get(position));
+
+        TextView txtArtist = (TextView) rowView.findViewById(R.id.txtArtist);
+        txtArtist.setText(artist.get(position));
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imgArtwork);
         imageView.setImageBitmap(image.get(position));

@@ -22,8 +22,8 @@ import java.util.List;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.onCreateDrawer(R.layout.activity_settings);
         getSupportActionBar().setTitle("Settings");
-        setContentView(R.layout.activity_settings);
 
         //add records to the spinner
         populateCurrencySpinner();

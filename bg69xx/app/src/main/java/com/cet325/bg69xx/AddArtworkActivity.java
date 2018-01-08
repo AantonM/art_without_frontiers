@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class AddArtworkActivity extends HomeActivity {
+public class AddArtworkActivity extends BaseActivity {
 
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     int TAKE_PHOTO_CODE = 0;
@@ -34,7 +34,7 @@ public class AddArtworkActivity extends HomeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_artwork);
+        super.onCreateDrawer(R.layout.activity_add_artwork);
         mLayout = findViewById(R.id.addArtworkLayout);
 
         //take a photo to upload when the image is selected

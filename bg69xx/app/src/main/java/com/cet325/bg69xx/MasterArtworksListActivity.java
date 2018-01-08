@@ -28,7 +28,8 @@ public class MasterArtworksListActivity extends HomeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_master_artworks_list);
+        super.onCreateDrawer(R.layout.activity_master_artworks_list);
+
         getSupportActionBar().setTitle("Hidden Artworks");
 
         //create the sort spinner

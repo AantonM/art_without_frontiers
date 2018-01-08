@@ -16,7 +16,7 @@ public class DetailedArtworkActivity extends HomeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detailed_artwork);
+        super.onCreateDrawer(R.layout.activity_detailed_artwork);
 
         displayArtwork();
     }

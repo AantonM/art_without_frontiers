@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,8 +18,8 @@ import java.util.List;
 
 public class MasterArtworksListActivity extends HomeActivity {
 
-    List<ArtworksDbMapper> artworksList = null;
-    ListView listView;
+    private List<ArtworksDbMapper> artworksList = null;
+    private ListView listView;
 
     /***
      *  Method that sets up the Master Artwork list.
@@ -169,6 +168,7 @@ public class MasterArtworksListActivity extends HomeActivity {
     private void displayCustomMasterList () {
 
         //The data that is going to be displayed
+        List<Integer> lstId = new ArrayList<>();
         List<String> lstArtist = new ArrayList<>();
         List<String> lstTitles = new ArrayList<>();
         List<Bitmap> lstBitmapImages = new ArrayList<>();
@@ -177,6 +177,7 @@ public class MasterArtworksListActivity extends HomeActivity {
 
         //extract the data from the Master list into sublists
         for(int a = 0; a < artworksList.size(); a++){
+            lstId.add(artworksList.get(a).getId());
             lstArtist.add(artworksList.get(a).getArtist());
             lstTitles.add(artworksList.get(a).getTitle());
             lstBitmapImages.add(ByteArrayToBitmapImgList(artworksList.get(a).getImage()));
@@ -185,17 +186,39 @@ public class MasterArtworksListActivity extends HomeActivity {
         }
 
         //send the data to a custom array list
-        MasterArtworksListCustomLayoutHandler customMasterList = new MasterArtworksListCustomLayoutHandler(this, lstArtist, lstTitles,lstBitmapImages, lstYear, lstRank);
+        MasterArtworksListCustomLayoutHandler customMasterList = new MasterArtworksListCustomLayoutHandler(this, lstId, lstArtist, lstTitles,lstBitmapImages, lstYear, lstRank);
         listView = (ListView) findViewById(R.id.lstArtworks);
         listView.setAdapter(customMasterList);
         //listens which element of the list is selected
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO: Open the specific detailed view
-                Toast.makeText(MasterArtworksListActivity.this, "You Clicked item number: " + position, Toast.LENGTH_SHORT).show();
+                openDetailView(view, position);
             }
         });
+    }
+
+    /***
+     * Open the detail view for a specific artwork.
+     *
+     * @param view
+     * @param position
+     */
+    private void openDetailView(View view, int position) {
+
+        Intent viewArtworkIntent = new Intent(view.getContext(), DetailedArtworkActivity.class);
+        Bundle extras = new Bundle();
+
+        extras.putInt("EXTRA_ID",artworksList.get(position).getId());
+        extras.putString("EXTRA_ARTIST",artworksList.get(position).getArtist());
+        extras.putString("EXTRA_TITLE",artworksList.get(position).getTitle());
+        extras.putString("EXTRA_ROOM",artworksList.get(position).getRoom());
+        extras.putString("EXTRA_DESCRIPTION",artworksList.get(position).getDescription());
+        extras.putString("EXTRA_YEAR",artworksList.get(position).getYear());
+        extras.putInt("EXTRA_RANK",artworksList.get(position).getRank());
+
+        viewArtworkIntent.putExtras(extras);
+        startActivity(viewArtworkIntent);
     }
 
     /***

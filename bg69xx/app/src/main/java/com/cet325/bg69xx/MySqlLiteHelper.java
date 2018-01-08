@@ -102,6 +102,25 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     }
 
     /***
+     * Get the image for a certain artwork based on id.
+     *
+     * @param artwork
+     */
+    public Bitmap getImageById(int id){
+        Bitmap img = null;
+        String query = "SELECT image FROM " + TABLE_ARTWORKS + " WHERE id =" + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+          img  = ByteArrayToBitmapImg(cursor.getBlob(0));
+        }
+
+        db.close();
+        cursor.close();
+        return img;
+    }
+
+    /***
      * Method that gets all Artworks from the database.
      *
      * @param artwork
@@ -138,6 +157,20 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         return artworksList;
     }
 
+    public void updateArtworkRating(float rating, int position) {
+        String query = "UPDATE " + TABLE_ARTWORKS + " SET rank = " + Math.round(rating) + " WHERE id = " + position;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(query);
+        db.close();
+
+    }
+
+    /***
+     * Convert image from byte array to bitmap
+     *
+     * @param imgByte
+     * @return
+     */
     private static Bitmap ByteArrayToBitmapImg(byte[] imgByte) {
         return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
     }

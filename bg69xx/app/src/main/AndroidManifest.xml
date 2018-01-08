@@ -31,7 +31,10 @@
             android:label="@string/title_activity_master_artworks_list" />
         <activity
             android:name=".AddArtworkActivity"
-            android:label="@string/title_activity_detailed_artwork_view"></activity>
+            android:label="@string/title_activity_detailed_artwork_view" />
+        <activity
+            android:name=".DetailedArtworkActivity"
+            android:label="@string/title_activity_detailed_artwork"></activity>
     </application>
 
 </manifest>

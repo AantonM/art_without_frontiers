@@ -1,7 +1,10 @@
 package com.cet325.bg69xx;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TicketsActivity extends BaseFrameActivity {
 
@@ -21,8 +24,25 @@ public class TicketsActivity extends BaseFrameActivity {
         super.onCreateDrawer(R.layout.activity_tickets);
         getSupportActionBar().setTitle("Admission");
         super.setupDrawer();
-        
+
+        //get the currency from the preferences
+        getCurrency();
+
+        calculateTicketPriceCurrencyRate();
+
+        //display tickets price
         displayTicketPrices();
+    }
+
+
+    private void getCurrency() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String name = preferences.getString("currency", "");
+        Toast.makeText(this, "Shared pref is: " + name, Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void calculateTicketPriceCurrencyRate() {
     }
 
     /***

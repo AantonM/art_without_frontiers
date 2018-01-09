@@ -65,11 +65,11 @@ public class DetailedArtworkActivity extends HomeActivity {
      * Update artwork rating when the rating bar value is changed.
      *
      * @param rating
-     * @param artoworkId
+     * @param artworkId
      */
-    private void updateRating(float rating, int artoworkId) {
+    private void updateRating(float rating, int artworkId) {
         MySqlLiteHelper db = new MySqlLiteHelper(this);
-        db.updateArtworkRating(rating,artoworkId);
+        db.updateArtworkRating(rating,artworkId);
         db.close();
     }
 

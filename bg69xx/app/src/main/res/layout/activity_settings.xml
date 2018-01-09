@@ -45,7 +45,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/txtPriceTitle"
-                android:gravity="left" />
+                android:gravity="left"
+                android:focusable="false"/>
 
         </TableRow>
     </TableLayout>

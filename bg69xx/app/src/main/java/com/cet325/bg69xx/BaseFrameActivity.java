@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class BaseFrameActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
@@ -66,14 +65,11 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
      * Handles the Navigation Drawer's behaviour when opening and closing.
      */
     protected void setupDrawer() {
-        Toast.makeText(this, "setupDrawer", Toast.LENGTH_SHORT).show();
-
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when the Navagation drawe is opened. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                Toast.makeText(BaseFrameActivity.this, "onDrawerOpened", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle("Navigation");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -81,7 +77,6 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
             /** Called when the Navagation drawe is closed. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                Toast.makeText(BaseFrameActivity.this, "onDrawerClosed", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle(mActivityTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -106,13 +101,18 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
 
         //check if the navigation menu is selected
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            Toast.makeText(BaseFrameActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
+            //do nothing
         }
 
         //check if the contacts option is selected
         if(id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
+        }
+
+        if(id == R.id.action_contacts){
+            Intent testSettings = new Intent(this, DeleteActivity2.class);
+            startActivity(testSettings);
         }
 
         //check if the tickets button is selected

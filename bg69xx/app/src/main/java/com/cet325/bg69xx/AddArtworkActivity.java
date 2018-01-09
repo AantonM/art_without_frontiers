@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class AddArtworkActivity extends BaseActivity {
+public class AddArtworkActivity extends BaseFrameActivity {
 
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     int TAKE_PHOTO_CODE = 0;

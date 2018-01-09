@@ -51,7 +51,7 @@ public class MasterArtworksListActivity extends HomeActivity {
         String[] spnOptions = new String[] {"Sort by:","Title asc", "Title desc", "Artist asc", "Artis desc", "Year asc", "Year desc"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spnOptions);
         //change the stock layout of the spinner
-        adapter.setDropDownViewResource(R.layout.spinner_layout);
+        adapter.setDropDownViewResource(R.layout.sort_spinner_layout);
         spnSort.setAdapter(adapter);
         //set initial selection of the spinner
         spnSort.setSelection(0);

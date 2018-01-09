@@ -36,7 +36,7 @@
             android:name=".DetailedArtworkActivity"
             android:label="@string/title_activity_detailed_artwork" />
         <activity
-            android:name=".BaseActivity"
+            android:name=".BaseFrameActivity"
             android:label="@string/title_activity_base"></activity>
     </application>
 

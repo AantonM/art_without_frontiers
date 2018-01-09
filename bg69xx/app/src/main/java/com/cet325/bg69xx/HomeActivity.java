@@ -1,28 +1,13 @@
 package com.cet325.bg69xx;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseFrameActivity {
 
     //params used for the left Navigation Drawer
     private ListView mDrawerList;

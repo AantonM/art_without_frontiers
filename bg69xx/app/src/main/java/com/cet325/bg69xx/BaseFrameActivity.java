@@ -3,7 +3,6 @@ package com.cet325.bg69xx;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,10 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class BaseActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class BaseFrameActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     //params used for the left Navigation Drawer
     private ListView mDrawerList;
@@ -75,7 +73,7 @@ public class BaseActivity extends ActionBarActivity implements AdapterView.OnIte
             /** Called when the Navagation drawe is opened. */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                Toast.makeText(BaseActivity.this, "onDrawerOpened", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseFrameActivity.this, "onDrawerOpened", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle("Navigation");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -83,7 +81,7 @@ public class BaseActivity extends ActionBarActivity implements AdapterView.OnIte
             /** Called when the Navagation drawe is closed. */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                Toast.makeText(BaseActivity.this, "onDrawerClosed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BaseFrameActivity.this, "onDrawerClosed", Toast.LENGTH_SHORT).show();
                 getSupportActionBar().setTitle(mActivityTitle);
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
@@ -108,7 +106,7 @@ public class BaseActivity extends ActionBarActivity implements AdapterView.OnIte
 
         //check if the navigation menu is selected
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-            Toast.makeText(BaseActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BaseFrameActivity.this, "Navigation", Toast.LENGTH_SHORT).show();
         }
 
         //check if the contacts option is selected

@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:contentDescription="Photo taken of the artwork"
-            app:srcCompat="@drawable/ic_add_a_photo" />
+            android:src="@drawable/ic_add_photo" />
 
         <EditText
             android:id="@+id/txtEditTitle"

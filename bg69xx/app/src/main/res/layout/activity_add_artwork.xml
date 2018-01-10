@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollIntro"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -22,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:contentDescription="Photo taken of the artwork"
-            android:src="@drawable/ic_add_a_photo" />
+            android:src="@drawable/ic_add_photo" />
 
         <EditText
             android:id="@+id/txtAddTitle"
@@ -33,7 +34,7 @@
             android:layout_below="@+id/imgAddPicture"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Title"
+            android:hint="Add Title *"
             android:inputType="textPersonName"
             android:maxLength="100" />
 
@@ -46,7 +47,7 @@
             android:layout_below="@+id/txtAddTitle"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Artist"
+            android:hint="Add Artist *"
             android:inputType="textPersonName"
             android:maxLength="100" />
 
@@ -85,7 +86,7 @@
             android:layout_below="@+id/txtAddDescription"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Year"
+            android:hint="Add Year *"
             android:inputType="date"
             android:maxLength="4" />
 
@@ -102,11 +103,25 @@
             android:stepSize="1.0"
             android:transformPivotX="0dp" />
 
+        <TextView
+            android:id="@+id/txtAddWarning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ratingAddRate"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:ems="10"
+            android:textSize="20sp"
+            android:textColor="#A8190A"
+            android:text="* fields are mandatory."/>
+
         <Button
             android:id="@+id/btnSumbitArtwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ratingAddRate"
+            android:layout_below="@id/txtAddWarning"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="10dp"

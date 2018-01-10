@@ -1,6 +1,7 @@
 package com.cet325.bg69xx;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 
 public class EditArtworkActivity extends BaseFrameActivity {
 
@@ -212,14 +215,12 @@ public class EditArtworkActivity extends BaseFrameActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readData();
-                updateData();
-                returnToMasterArtworksList(v);
+                readData(v);
             }
         });
     }
 
-    private void readData() {
+    private void readData(View view) {
 
         ImageView imageView = (ImageView) findViewById(R.id.imgEditPicture);
         Bitmap imageBitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
@@ -243,8 +244,40 @@ public class EditArtworkActivity extends BaseFrameActivity {
         RatingBar ratingEditView = (RatingBar) findViewById(R.id.ratingEditRate);
         int rank = Math.round(ratingEditView.getRating());
 
+        //check if mandatory fields are empty
+        if(title.isEmpty() || artist.isEmpty() || year.isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Please fill all mandatory fields: Title, Artist, Year.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        //check if year is real
+        else if(Integer.valueOf(year) > Calendar.getInstance().get(Calendar.YEAR) || Integer.valueOf(year) < 500){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Year should be between 0500 and " + Calendar.getInstance().get(Calendar.YEAR))
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //do things
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+        else{
+            Button btnSubmit = (Button) findViewById(R.id.btnSumbitArtwork);
+            btnSubmit.setEnabled(false);
+            artworkMapper = new ArtworksDbMapper(artwork_id, artist, title, room, description, image, year, rank);
+            updateData(view);
+        }
 
-        artworkMapper = new ArtworksDbMapper(artwork_id, artist, title, room, description, image, year, rank);
+
     }
 
     /***
@@ -261,12 +294,13 @@ public class EditArtworkActivity extends BaseFrameActivity {
     /***
      * Upload the inputed data to the database
      */
-    private void updateData() {
+    private void updateData(View view) {
         MySqlLiteHelper db = new MySqlLiteHelper(this);
         db.updateArtwork(artworkMapper);
         db.close();
 
         Toast.makeText(this,artworkMapper.getTitle() + " has been updated.",Toast.LENGTH_SHORT).show();
+        returnToMasterArtworksList(view);
     }
 
     /***

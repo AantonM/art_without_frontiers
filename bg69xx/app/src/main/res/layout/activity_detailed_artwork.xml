@@ -23,8 +23,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
-            android:contentDescription="Photo taken of the artwork"
-            app:srcCompat="@drawable/ic_add_a_photo"/>
+            android:contentDescription="Photo taken of the artwork"/>
 
         <TextView
             android:id="@+id/txtViewTitle"

@@ -27,5 +27,6 @@
         <item>-1</item>
         <item>0</item>
     </string-array>
+    <string name="title_activity_edit_artwork">EditArtworkActivity</string>
 
 </resources>

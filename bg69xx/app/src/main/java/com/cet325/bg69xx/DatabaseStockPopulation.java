@@ -64,7 +64,6 @@ public class DatabaseStockPopulation extends HomeActivity {
      * @param db
      */
     private void insertStockArtworks(Context current, String tableArtworks, SQLiteDatabase db) {
-        StringBuilder insertQuery = new StringBuilder("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank) VALUES ");
 
         //iterate trough all artworks
         for(int i =0; i < artworksList.size(); i++) {
@@ -78,14 +77,15 @@ public class DatabaseStockPopulation extends HomeActivity {
             byte[] imgBytes = imgBitmapToByteArray(imageBitmap);
 
             //insert the artwork to the database
-            db.execSQL("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank) VALUES (?,?,?,?,?,?,?)",
+            db.execSQL("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank, uuid) VALUES (?,?,?,?,?,?,?,?)",
                     new Object[]{artworksList.get(i).get(0),
                             artworksList.get(i).get(1),
                             artworksList.get(i).get(2),
                             artworksList.get(i).get(3),
                             imgBytes,
                             artworksList.get(i).get(5),
-                            Integer.valueOf(artworksList.get(i).get(6))});
+                            Integer.valueOf(artworksList.get(i).get(6)),
+                            "default"});
 
             Log.d("db status: ", "Add - " + artworksList.get(i).get(1));
         }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollIntro"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -7,14 +8,14 @@
     android:scrollbars="vertical">
 
     <RelativeLayout
-        android:id="@+id/addArtworkLayout"
+        android:id="@+id/editArtworkLayout"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
         <ImageView
-            android:id="@+id/imgAddPicture"
+            android:id="@+id/imgEditPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -22,79 +23,79 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:contentDescription="Photo taken of the artwork"
-            android:src="@drawable/ic_add_a_photo" />
+            app:srcCompat="@drawable/ic_add_a_photo" />
 
         <EditText
-            android:id="@+id/txtAddTitle"
+            android:id="@+id/txtEditTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/imgAddPicture"
+            android:layout_below="@+id/imgEditPicture"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Title"
+            android:hint="Edit Title"
             android:inputType="textPersonName"
             android:maxLength="100" />
 
         <EditText
-            android:id="@+id/txtAddArtist"
+            android:id="@+id/txtEditArtist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtAddTitle"
+            android:layout_below="@+id/txtEditTitle"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Artist"
+            android:hint="Edit Artist"
             android:inputType="textPersonName"
             android:maxLength="100" />
 
         <EditText
-            android:id="@+id/txtAddRoom"
+            android:id="@+id/txtEditRoom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtAddArtist"
+            android:layout_below="@+id/txtEditArtist"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Room or Location of the artwork"
+            android:hint="Edit Room or Location of the artwork"
             android:inputType="textPersonName"
             android:maxLength="100" />
 
         <EditText
-            android:id="@+id/txtAddDescription"
+            android:id="@+id/txtEditDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtAddRoom"
+            android:layout_below="@+id/txtEditRoom"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Description"
+            android:hint="Edit Description"
             android:inputType="textMultiLine"
             android:maxLines="10" />
 
         <EditText
-            android:id="@+id/txtAddYear"
+            android:id="@+id/txtEditYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtAddDescription"
+            android:layout_below="@+id/txtEditDescription"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Add Year"
+            android:hint="Edit Year"
             android:inputType="date"
             android:maxLength="4" />
 
         <RatingBar
-            android:id="@+id/ratingAddRate"
+            android:id="@+id/ratingEditRate"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/txtAddYear"
+            android:layout_below="@id/txtEditYear"
             android:layout_marginTop="10dp"
             android:numStars="5"
             android:scaleX="0.75"
@@ -103,15 +104,16 @@
             android:transformPivotX="0dp" />
 
         <Button
-            android:id="@+id/btnSumbitArtwork"
+            android:id="@+id/btnEditArtwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ratingAddRate"
+            android:layout_below="@id/ratingEditRate"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="10dp"
             android:background="#12CD3D"
-            android:text="Submit" />
+            android:text="Edit Artwork"
+            android:padding="20px"/>
 
     </RelativeLayout>
 </ScrollView>

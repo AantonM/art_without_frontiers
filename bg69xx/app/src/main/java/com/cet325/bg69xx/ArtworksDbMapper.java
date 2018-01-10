@@ -15,10 +15,11 @@ public class ArtworksDbMapper {
     private byte[] image;
     private String year;
     private int rank;
+    private String uuid;
 
     public ArtworksDbMapper(){}
 
-    public ArtworksDbMapper(String artist, String title, String room, String description, byte[] image, String year, Integer rank){
+    public ArtworksDbMapper(String artist, String title, String room, String description, byte[] image, String year, Integer rank, String uuid){
         this.artist = artist;
         this.title = title;
         this.room = room;
@@ -26,6 +27,7 @@ public class ArtworksDbMapper {
         this.image = image;
         this.year = year;
         this.rank = rank;
+        this.uuid = uuid;
     }
 
     public ArtworksDbMapper(int id, String artist, String title, String room, String description, byte[] image, String year, Integer rank){
@@ -37,6 +39,19 @@ public class ArtworksDbMapper {
         this.image = image;
         this.year = year;
         this.rank = rank;
+    }
+
+
+    public ArtworksDbMapper(int id, String artist, String title, String room, String description, byte[] image, String year, Integer rank, String uuid){
+        this.id = id;
+        this.artist = artist;
+        this.title = title;
+        this.room = room;
+        this.description = description;
+        this.image = image;
+        this.year = year;
+        this.rank = rank;
+        this.uuid = uuid;
     }
 
     @Override
@@ -75,4 +90,9 @@ public class ArtworksDbMapper {
     public int getRank() {
         return rank;
     }
+
+    public String getUuid() {
+        return uuid;
+    }
+
 }

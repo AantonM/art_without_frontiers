@@ -2,17 +2,16 @@ package com.cet325.bg69xx;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,48 +19,101 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class AddArtworkActivity extends BaseFrameActivity {
+public class EditArtworkActivity extends BaseFrameActivity {
 
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     int TAKE_PHOTO_CODE = 0;
 
     //image view to where the photo will be displayed
     private ImageView imgImportImage;
+
     //the base layout
     private View mLayout;
     private ArtworksDbMapper artworkMapper;
 
-    SharedPreferences prefs;
-    private String user_uuid;
+    private int artwork_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onCreateDrawer(R.layout.activity_add_artwork);
-        mLayout = findViewById(R.id.addArtworkLayout);
-        getSupportActionBar().setTitle("Add artwork");
+        super.onCreateDrawer(R.layout.activity_edit_artwork);
+        mLayout = findViewById(R.id.editArtworkLayout);
+        getSupportActionBar().setTitle("View/Edit artwork");
 
-        //get UUID created the first time the application was started
-        getUserUUID();
+        displayArtwork();
 
         //take a photo to upload when the image is selected
         takePictureListener();
 
         //read input data when submit button is selected
-        uploadDataListener();
+        editDataListener();
 
     }
 
-    private void getUserUUID(){
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        user_uuid = prefs.getString("uuid", "");
+    private void displayArtwork() {
+        final Bundle extras = getIntent().getExtras();
+
+        artwork_id = extras.getInt("EXTRA_ID");
+
+        ImageView image = (ImageView) findViewById(R.id.imgEditPicture);
+        image.setImageBitmap(getImage(artwork_id));
+
+        EditText title = (EditText) findViewById(R.id.txtEditTitle);
+        title.setText(extras.getString("EXTRA_TITLE"));
+
+        EditText artist = (EditText) findViewById(R.id.txtEditArtist);
+        artist.setText(extras.getString("EXTRA_ARTIST"));
+
+        EditText room = (EditText) findViewById(R.id.txtEditRoom);
+        room.setText(extras.getString("EXTRA_ROOM"));
+
+        EditText description = (EditText) findViewById(R.id.txtEditDescription);
+        description.setText(extras.getString("EXTRA_DESCRIPTION"));
+
+        EditText year = (EditText) findViewById(R.id.txtEditYear);
+        year.setText(extras.getString("EXTRA_YEAR"));
+
+        RatingBar rating = (RatingBar) findViewById(R.id.ratingEditRate);
+        rating.setRating(extras.getInt("EXTRA_RANK"));
+
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                updateRating(rating, artwork_id);
+                ratingBar.setRating(rating);
+                Toast.makeText(EditArtworkActivity.this,"Rating has been updated for " + extras.getString("EXTRA_TITLE") ,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    /***
+     * Update artwork rating when the rating bar value is changed.
+     *
+     * @param rating
+     * @param artworkId
+     */
+    private void updateRating(float rating, int artworkId) {
+        MySqlLiteHelper db = new MySqlLiteHelper(this);
+        db.updateArtworkRating(rating,artworkId);
+        db.close();
+    }
+
+    /***
+     * Get image from the database for the artwork that is displayed in the detailed view.
+     *
+     * @param extra_id
+     * @return
+     */
+    private Bitmap getImage(int extra_id) {
+        MySqlLiteHelper db = new MySqlLiteHelper(this);
+        return db.getImageById(extra_id);
     }
 
     /***
      * Opens camera when the picture ImageView is clicked
      */
     private void takePictureListener() {
-        imgImportImage = (ImageView) findViewById(R.id.imgAddPicture);
+        imgImportImage = (ImageView) findViewById(R.id.imgEditPicture);
         imgImportImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +160,7 @@ public class AddArtworkActivity extends BaseFrameActivity {
                 @Override
                 public void onClick(View view) {
                     // Request the permission
-                    ActivityCompat.requestPermissions(AddArtworkActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
+                    ActivityCompat.requestPermissions(EditArtworkActivity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CAMERA);
                 }
             }).show();
 
@@ -155,14 +207,13 @@ public class AddArtworkActivity extends BaseFrameActivity {
         }
     }
 
-
-    private void uploadDataListener() {
-        Button btnSubmit = (Button) findViewById(R.id.btnSumbitArtwork);
+    private void editDataListener() {
+        Button btnSubmit = (Button) findViewById(R.id.btnEditArtwork);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 readData();
-                uploadData();
+                updateData();
                 returnToMasterArtworksList(v);
             }
         });
@@ -170,30 +221,30 @@ public class AddArtworkActivity extends BaseFrameActivity {
 
     private void readData() {
 
-        ImageView imageView = (ImageView) findViewById(R.id.imgAddPicture);
+        ImageView imageView = (ImageView) findViewById(R.id.imgEditPicture);
         Bitmap imageBitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         byte[] image = imgBitmapToByteArray(imageBitmap);
 
-        TextView titleAddView = (TextView) findViewById(R.id.txtAddTitle);
-        String title = titleAddView.getText().toString();
+        EditText titleEditView = (EditText) findViewById(R.id.txtEditTitle);
+        String title = titleEditView.getText().toString();
 
-        TextView artistAddView = (TextView) findViewById(R.id.txtAddArtist);
-        String artist = artistAddView.getText().toString();
+        EditText artistEditView = (EditText) findViewById(R.id.txtEditArtist);
+        String artist = artistEditView.getText().toString();
 
-        TextView roomAddView = (TextView) findViewById(R.id.txtAddRoom);
-        String room = roomAddView.getText().toString();
+        EditText roomEditView = (EditText) findViewById(R.id.txtEditRoom);
+        String room = roomEditView.getText().toString();
 
-        TextView descriptionAddView = (TextView) findViewById(R.id.txtAddDescription);
-        String description = descriptionAddView.getText().toString();
+        EditText descriptionEditView = (EditText) findViewById(R.id.txtEditDescription);
+        String description = descriptionEditView.getText().toString();
 
-        TextView yearAddView = (TextView) findViewById(R.id.txtAddYear);
-        String year = yearAddView.getText().toString();
+        EditText yearEditView = (EditText) findViewById(R.id.txtEditYear);
+        String year = yearEditView.getText().toString();
 
-        RatingBar ratingAddView = (RatingBar) findViewById(R.id.ratingAddRate);
-        int rank = Math.round(ratingAddView.getRating());
+        RatingBar ratingEditView = (RatingBar) findViewById(R.id.ratingEditRate);
+        int rank = Math.round(ratingEditView.getRating());
 
-        artworkMapper = new ArtworksDbMapper(artist, title, room, description, image, year, rank,user_uuid);
 
+        artworkMapper = new ArtworksDbMapper(artwork_id, artist, title, room, description, image, year, rank);
     }
 
     /***
@@ -210,12 +261,12 @@ public class AddArtworkActivity extends BaseFrameActivity {
     /***
      * Upload the inputed data to the database
      */
-    private void uploadData() {
+    private void updateData() {
         MySqlLiteHelper db = new MySqlLiteHelper(this);
-            db.addArtwork(artworkMapper);
+        db.updateArtwork(artworkMapper);
         db.close();
 
-        Toast.makeText(this,"New artworks has been saved to the database.",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,artworkMapper.getTitle() + " has been updated.",Toast.LENGTH_SHORT).show();
     }
 
     /***
@@ -227,4 +278,5 @@ public class AddArtworkActivity extends BaseFrameActivity {
         startActivity(viewAllArtworksIntent);
         finish();
     }
+
 }

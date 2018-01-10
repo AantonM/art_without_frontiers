@@ -31,6 +31,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_IMAGE = "image";
     private static final String KEY_YEAR = "year";
     private static final String KEY_RANK = "rank";
+    private static final String KEY_UUID = "uuid";
 
     private static Context currentContext;
 
@@ -55,7 +56,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 "description TEXT, " +
                 "image BLOB, " +
                 "year TEXT, " +
-                "rank INTEGER )";
+                "rank INTEGER, " +
+                "uuid TEXT)";
 
         db.execSQL(createAllArtworksQuery);
 
@@ -82,11 +84,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
      * @param artwork
      */
     public void addArtwork(ArtworksDbMapper artwork){
-        Log.d("addArtwork-1: ", artwork.toString());
         SQLiteDatabase db = this.getWritableDatabase();
 
         String path = db.getPath();
-        Log.d("addArtwork-2: ", path);
 
         ContentValues values = new ContentValues();
         values.put(KEY_ARTIST, artwork.getArtist());
@@ -96,6 +96,7 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         values.put(KEY_IMAGE, artwork.getImage());
         values.put(KEY_YEAR, artwork.getYear());
         values.put(KEY_RANK, artwork.getRank());
+        values.put(KEY_UUID, artwork.getUuid());
 
         db.insert(TABLE_ARTWORKS, null, values);
         db.close();
@@ -143,10 +144,11 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 byte[] image = cursor.getBlob(5);
                 String year = cursor.getString(6);
                 int rank = Integer.parseInt(cursor.getString(7));
+                String uuid = cursor.getString(8);
 
 
                 //add to list
-                artworksList.add(new ArtworksDbMapper(id, artist, title, room, description, image, year, rank));
+                artworksList.add(new ArtworksDbMapper(id, artist, title, room, description, image, year, rank, uuid));
             }while (cursor.moveToNext());
         }
 
@@ -173,5 +175,21 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
      */
     private static Bitmap ByteArrayToBitmapImg(byte[] imgByte) {
         return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+    }
+
+    public void updateArtwork(ArtworksDbMapper artworkMapper) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_ARTIST, artworkMapper.getArtist());
+        values.put(KEY_TITLE, artworkMapper.getTitle());
+        values.put(KEY_ROOM, artworkMapper.getRoom());
+        values.put(KEY_DESCRIPTION, artworkMapper.getDescription());
+        values.put(KEY_IMAGE, artworkMapper.getImage());
+        values.put(KEY_YEAR, artworkMapper.getYear());
+        values.put(KEY_RANK, artworkMapper.getRank());
+
+        int i = db.update(TABLE_ARTWORKS, values, KEY_ID + " = ?",  new String[] { String.valueOf(artworkMapper.getId())});
+        db.close();
     }
 }

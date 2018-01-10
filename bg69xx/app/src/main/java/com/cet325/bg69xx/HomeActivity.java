@@ -7,6 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.UUID;
 
 
 public class HomeActivity extends BaseFrameActivity {
@@ -32,6 +35,7 @@ public class HomeActivity extends BaseFrameActivity {
         
         //make a test database connection
         databaseInitialisation();
+
     }
 
     /***
@@ -56,6 +60,10 @@ public class HomeActivity extends BaseFrameActivity {
 
             //set default curency only the first time the application is runned
             prefs.edit().putString("pref_currency", getString(R.string.default_currency)).commit();
+
+            //Create UUID for this user
+            String uniqueID = UUID.randomUUID().toString();
+            prefs.edit().putString("uuid", uniqueID).commit();
         }
     }
 

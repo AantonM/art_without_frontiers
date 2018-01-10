@@ -1,9 +1,11 @@
 package com.cet325.bg69xx;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
@@ -149,6 +151,7 @@ public class MasterArtworksListActivity extends HomeActivity {
             @Override
             public void onClick(View v) {
                 Intent addArtworkIntent = new Intent(v.getContext(), AddArtworkActivity.class);
+                addArtworkIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(addArtworkIntent);
             }
         });
@@ -207,7 +210,6 @@ public class MasterArtworksListActivity extends HomeActivity {
      */
     private void openDetailView(View view, int position) {
 
-        Intent viewArtworkIntent = new Intent(view.getContext(), DetailedArtworkActivity.class);
         Bundle extras = new Bundle();
 
         extras.putInt("EXTRA_ID",artworksList.get(position).getId());
@@ -218,8 +220,19 @@ public class MasterArtworksListActivity extends HomeActivity {
         extras.putString("EXTRA_YEAR",artworksList.get(position).getYear());
         extras.putInt("EXTRA_RANK",artworksList.get(position).getRank());
 
-        viewArtworkIntent.putExtras(extras);
-        startActivity(viewArtworkIntent);
+        String uuid = PreferenceManager.getDefaultSharedPreferences(this).getString("uuid", "");
+        if(uuid.equals(artworksList.get(position).getUuid())){
+            extras.putString("EXTRA_UUID",artworksList.get(position).getUuid());
+            Intent editViewArtworkIntent = new Intent(view.getContext(), EditArtworkActivity.class);
+            editViewArtworkIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            editViewArtworkIntent.putExtras(extras);
+            startActivity(editViewArtworkIntent);
+        }else{
+            Intent viewArtworkIntent = new Intent(view.getContext(), DetailedArtworkActivity.class);
+            viewArtworkIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            viewArtworkIntent.putExtras(extras);
+            startActivity(viewArtworkIntent);
+        }
     }
 
     /***

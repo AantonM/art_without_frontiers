@@ -42,6 +42,8 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
                     Intent artworksListIntent = new Intent(view.getContext(), MasterArtworksListActivity.class);
+                    //Have only one instance of this activity.
+                    artworksListIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(artworksListIntent);
                 }
             }
@@ -107,17 +109,20 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
         //check if the contacts option is selected
         if(id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            //Have only one instance of this activity.
+            settingsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(settingsIntent);
         }
 
         if(id == R.id.action_contacts){
-            Intent testSettings = new Intent(this, DeleteActivity2.class);
-            startActivity(testSettings);
+            //Do nothing.
         }
 
         //check if the tickets button is selected
         if(id == R.id.tickets) {
             Intent ticketsIntent = new Intent(this, TicketsActivity.class);
+            //Have only one instance of this activity.
+            ticketsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(ticketsIntent);
         }
 
@@ -156,6 +161,22 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Determine what activity I am and find the menu item for that activity
+        MenuItem menuItem = null;
+        if (getClass().equals(TicketsActivity.class)) {
+            menuItem = menu.findItem(R.id.tickets);
+        }
+
+        // Disable this menu item
+        if (menuItem != null) {
+            menuItem.setEnabled(false); // Make it non-selectable (even with shortcut)
+            menuItem.setVisible(false); // Make it non-visible
+        }
         return true;
     }
 }

@@ -16,6 +16,7 @@ public class HomeActivity extends BaseFrameActivity {
     private ArrayAdapter<String> mAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private SharedPreferences prefs;
 
     /***
      * Method called when this activity is created that set up the layout.
@@ -27,19 +28,10 @@ public class HomeActivity extends BaseFrameActivity {
         super.onCreate(savedInstanceState);
         super.onCreateDrawer(R.layout.activity_home);
         getSupportActionBar().setTitle("Reina Sofia");
-
-        //set default curency
-        setDefaultCurrency();
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
         //make a test database connection
         databaseInitialisation();
-    }
-
-    private void setDefaultCurrency() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("currency", getString(R.string.default_currency));
-        editor.apply();
     }
 
     /***
@@ -51,6 +43,20 @@ public class HomeActivity extends BaseFrameActivity {
         MySqlLiteHelper db = new MySqlLiteHelper(this);
         db.getWritableDatabase();
         db.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            // using the following line to edit/commit prefs
+            prefs.edit().putBoolean("firstrun", false).commit();
+
+            //set default curency only the first time the application is runned
+            prefs.edit().putString("pref_currency", getString(R.string.default_currency)).commit();
+        }
     }
 
 }

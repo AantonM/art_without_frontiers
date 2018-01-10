@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -22,13 +23,13 @@
         </activity>
         <activity
             android:name=".TicketsActivity"
-            android:label="@string/title_activity_tickets" />
+            android:label="@string/title_activity_tickets"/>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"/>
         <activity
             android:name=".MasterArtworksListActivity"
-            android:label="@string/title_activity_master_artworks_list" />
+            android:label="@string/title_activity_master_artworks_list"/>
         <activity
             android:name=".AddArtworkActivity"
             android:label="@string/title_activity_detailed_artwork_view" />

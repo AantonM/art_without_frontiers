@@ -33,15 +33,15 @@ public class SettingsActivity extends BaseFrameActivity {
         getCurrencies();
 
         //get default curency
-        getDefaultCurrency();
+        getCurrentCurrency();
 
         //add records to the spinner
         populateCurrencySpinner();
     }
 
-    private void getDefaultCurrency() {
+    private void getCurrentCurrency() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        defaultCurrency = preferences.getString("currency", "");
+        defaultCurrency = preferences.getString("pref_currency", "");
     }
 
     /***
@@ -81,7 +81,7 @@ public class SettingsActivity extends BaseFrameActivity {
     private void updateCurrency(int currencyId) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("currency", currencies[currencyId]);
+        editor.putString("pref_currency", currencies[currencyId]);
         editor.apply();
         Toast.makeText(this, "Shared pref created: ", Toast.LENGTH_SHORT).show();
     }

@@ -9,4 +9,16 @@
     <!--This should be one of the above options-->
     <string name="default_currency">EUR</string>
 
+    <!--Currency Signs-->
+    <string name="EUR">€</string>
+    <string name="GBP">£</string>
+    <string name="USD">$</string>
+
+    <!--tickets prices and discounts-->
+    <string name="adult_ticket_price">20.00</string>
+    <string name="child_discount_percentage">70</string>
+    <string name="student_discount_percentage">50</string>
+
+
+
 </resources>

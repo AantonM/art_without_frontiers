@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="£"
+                android:text="0.00"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="£"
+                android:text="0.00"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="£"
+                android:text="0.00"
                 android:textSize="20sp" />
 
         </TableRow>

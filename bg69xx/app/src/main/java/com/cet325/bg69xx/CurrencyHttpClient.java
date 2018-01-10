@@ -43,6 +43,31 @@ public class CurrencyHttpClient {
         return 0;
     }
 
+    public double getOfflineCurrencyRate(InputStream stream, String currentCurrency){
+        StringBuffer buffer = new StringBuffer();
+        Gson gson = new Gson();
+
+        try {
+
+            int data = stream.read();
+            while (data != -1) {
+                buffer.append((char) data);
+                data = stream.read();
+            }
+
+            stream.close();
+            response = gson.fromJson(buffer.toString(), ResponseCurrencyRateMapper.class);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("IOException:", e.getMessage());
+        }
+
+        double currencyRate = getCurrencyRate(currentCurrency);
+
+        return currencyRate;
+    }
+
 
     class DownloadData extends AsyncTask<Void, Void, ResponseCurrencyRateMapper> {
         @Override

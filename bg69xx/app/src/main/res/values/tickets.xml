@@ -10,9 +10,9 @@
     <string name="default_currency">EUR</string>
 
     <!--Currency Signs-->
-    <string name="EUR">€</string>
-    <string name="GBP">£</string>
-    <string name="USD">$</string>
+    <string name="eur">€</string>
+    <string name="gbp">£</string>
+    <string name="usd">$</string>
 
     <!--tickets prices and discounts-->
     <string name="adult_ticket_price">20.00</string>

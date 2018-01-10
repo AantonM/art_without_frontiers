@@ -1,12 +1,20 @@
 package com.cet325.bg69xx;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.InputStream;
+
 public class TicketsActivity extends BaseFrameActivity {
+
+    private String currentCurrency;
 
     /***
      * Method called when this activity is created that set up the layout.
@@ -42,19 +50,28 @@ public class TicketsActivity extends BaseFrameActivity {
     private double checkCurrency() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String defaultCurrency = getString(R.string.default_currency);
-        String currentCurrency = preferences.getString("pref_currency", "");
+        currentCurrency = preferences.getString("pref_currency", "");
+        //default currency rate if the currency we try to exchange the currency to itself. E.g. EUR->EUR = 1.00
         double currentCurrencyRates = 1.0;
 
+        //get currency from API
         if(!currentCurrency.equals(defaultCurrency))
         {
+            TextView offlineMsg = (TextView) findViewById(R.id.offlineText);
             CurrencyHttpClient getCurrencyRatesRequest = new CurrencyHttpClient(defaultCurrency);
             currentCurrencyRates = getCurrencyRatesRequest.getCurrencyRate(currentCurrency);
-        }
+            offlineMsg.setVisibility(View.INVISIBLE);
 
-        Toast.makeText(this, "The rate: " + defaultCurrency + "-" + currentCurrency + " is: " + currentCurrencyRates, Toast.LENGTH_SHORT).show();
+            //if the API returns 0.0 (offline or down) use predefined currency rates
+            if(currentCurrencyRates == 0.0){
+                int jsonFileId = this.getResources().getIdentifier(defaultCurrency.toLowerCase(), "raw", this.getPackageName());
+                currentCurrencyRates = getCurrencyRatesRequest.getOfflineCurrencyRate(getResources().openRawResource(jsonFileId),currentCurrency);
+
+                offlineMsg.setVisibility(View.VISIBLE);
+            }
+        }
         return currentCurrencyRates;
     }
-
 
     private void calculateTicketPriceCurrencyRate() {
     }
@@ -70,6 +87,9 @@ public class TicketsActivity extends BaseFrameActivity {
         TextView txtChildTicketPrice = (TextView)findViewById(R.id.txtChild);
         TextView txtStudentTicketPrice = (TextView)findViewById(R.id.txtStudent);
 
+        int currencySignID = this.getResources().getIdentifier(currentCurrency.toLowerCase(), "string", this.getPackageName());
+        String currencySign = getString(currencySignID);
+
         //get and calculate adult ticket price
         double adultTicketPrice = Double.valueOf(getString(R.string.adult_ticket_price)) * currencyRate;
         double defaultChildPercentageDiscount = Double.valueOf(getString(R.string.child_discount_percentage));
@@ -77,9 +97,9 @@ public class TicketsActivity extends BaseFrameActivity {
         double defaultStudentPercentageDiscount = Double.valueOf(getString(R.string.student_discount_percentage));
         double studentTicketPrice = calculateDiscountTicketPrice(defaultStudentPercentageDiscount, adultTicketPrice);
 
-        txtAdultTicketPrice.setText(String.valueOf(round(adultTicketPrice)));
-        txtChildTicketPrice.setText(String.valueOf(round(childTicketPrice)));
-        txtStudentTicketPrice.setText(String.valueOf(round(studentTicketPrice)));
+        txtAdultTicketPrice.setText(String.valueOf(round(adultTicketPrice)) + " " +currencySign);
+        txtChildTicketPrice.setText(String.valueOf(round(childTicketPrice))+ " " +currencySign);
+        txtStudentTicketPrice.setText(String.valueOf(round(studentTicketPrice))+ " " +currencySign);
     }
 
     private double round(double number){

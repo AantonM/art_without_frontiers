@@ -41,7 +41,12 @@ public class MasterArtworksListCustomLayoutHandler extends ArrayAdapter<String>{
         View rowView= inflater.inflate(R.layout.master_artwork_list_element, null, true);
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.txtTitle);
-        txtTitle.setText(title.get(position));
+        if(title.get(position).length() > 17){
+            String miniTitle = title.get(position).substring(0,17) + "...";
+            txtTitle.setText(miniTitle);
+        }else{
+            txtTitle.setText(title.get(position));
+        }
 
         TextView txtArtist = (TextView) rowView.findViewById(R.id.txtArtist);
         txtArtist.setText(artist.get(position));

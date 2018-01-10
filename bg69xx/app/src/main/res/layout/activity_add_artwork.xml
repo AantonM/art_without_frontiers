@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollIntro"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -22,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:contentDescription="Photo taken of the artwork"
-            android:src="@drawable/ic_add_a_photo" />
+            app:srcCompat="@drawable/ic_add_a_photo" />
 
         <EditText
             android:id="@+id/txtAddTitle"

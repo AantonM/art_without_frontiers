@@ -67,25 +67,12 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/txtViewDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtViewYear"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:ems="10"
-            android:text="Description"
-            android:textSize="20sp"/>
-
-        <TextView
             android:id="@+id/txtViewRoom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/txtViewDescription"
+            android:layout_below="@+id/txtViewYear"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             android:ems="10"
@@ -100,12 +87,27 @@
             android:layout_below="@id/txtViewRoom"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="100dp"
             android:numStars="5"
             android:scaleX="0.75"
             android:scaleY="0.75"
             android:stepSize="1.0"
             android:transformPivotX="0dp"/>
+
+        <TextView
+            android:id="@+id/txtViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ratingViewRate"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:text="Description"
+            android:textSize="20sp"
+            android:layout_marginBottom="100dp"/>
+
+
 
     </RelativeLayout>
 </ScrollView>

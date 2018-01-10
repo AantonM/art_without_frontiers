@@ -35,6 +35,8 @@ public class AddArtworkActivity extends BaseFrameActivity {
         super.onCreate(savedInstanceState);
         super.onCreateDrawer(R.layout.activity_add_artwork);
         mLayout = findViewById(R.id.addArtworkLayout);
+        getSupportActionBar().setTitle("Add artwork");
+
 
         //take a photo to upload when the image is selected
         takePictureListener();

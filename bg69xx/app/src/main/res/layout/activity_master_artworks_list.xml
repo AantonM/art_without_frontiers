@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -11,7 +12,7 @@
         android:background="#66AEFF"
         android:focusable="false"
         android:spinnerMode="dialog"
-        android:text="Sort list by:"
+        android:text="@string/sort_list_by"
         android:textSize="20sp" />
 
     <FrameLayout
@@ -30,6 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_add_plus" />
+            app:srcCompat="@drawable/ic_add_plus" />
     </FrameLayout>
 </LinearLayout>

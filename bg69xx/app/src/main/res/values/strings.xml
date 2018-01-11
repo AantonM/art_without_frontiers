@@ -1,32 +1,70 @@
 <resources>
     <string name="app_name">Reina Sofia</string>
-    <string name="title_activity_home">HomeActivity</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="home_title">Museo Nacional Centro De Arte \"Reina Sofia\"</string>
-    <string name="home_intro">Although museums as public institutions remain important in the general scheme of creative industries, they have lost some of their influence, or at least their privileged position, in defining what is understood to be culture. Todays world of culture is shaped, on the one hand, by the prominent figures in the culture and communications industry and, on the other, by the diffuse magma of culture producers whose actions are governed by the subordination of their creative singularity. This subordination is manifested in artists having to sell their creative capacity or in their being expropriated of it.  In addition, we are in the midst of a systemic crisis to which the museum is not immune. If the economic paradigm based on speculation and easy money has proven unsustainable, it should also be clear that the primacy of the building and of art as spectacle over the museums artistic program has ceased to be valid.</string>
+
+    <!--Activities-->
+    <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_tickets">TicketsActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_master_artworks_list">MasterArtworksListActivity</string>
     <string name="title_activity_detailed_artwork_view">DetailedArtworkView</string>
     <string name="title_activity_detailed_artwork">DetailedArtworkActivity</string>
     <string name="title_activity_base">BaseActivity</string>
-    <string name="title_activity_delete2">Settings</string>
-
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_change_currency">Currency</string>
-    <string-array name="pref_currency_names">
-        <item>British pound - £</item>
-        <item>Euro €</item>
-    </string-array>
-    <string-array name="pref_currency_values">
-        <item>-1</item>
-        <item>0</item>
-    </string-array>
     <string name="title_activity_edit_artwork">EditArtworkActivity</string>
+
+    <!--activity_add_artwork-->
+    <string name="photo_taken_of_the_artwork">Photo taken of the artwork</string>
+    <string name="add_title">Add Title *</string>
+    <string name="add_artist">Add Artist *</string>
+    <string name="add_room_or_location_of_the_artwork">Add Room or Location of the artwork</string>
+    <string name="add_description">Add Description</string>
+    <string name="add_year">Add Year *</string>
+    <string name="submit">Submit</string>
+    <string name="fields_are_mandatory">* fields are mandatory.</string>
+
+    <!--activity_detailed_artwork-->
+    <string name="detailed_title">Title</string>
+    <string name="detailed_year">Year</string>
+    <string name="detailed_photo_taken_of_the_artwork">Photo taken of the artwork</string>
+    <string name="detailed_artist">Artist</string>
+    <string name="detailed_room">Room</string>
+    <string name="detailed_description">Description</string>
+
+    <!--activity_edit_artwork-->
+    <string name="edit_photo_taken_of_the_artwork">Photo taken of the artwork</string>
+    <string name="edit_title">Edit Title</string>
+    <string name="edit_artist">Edit Artist</string>
+    <string name="edit_room_or_location_of_the_artwork">Edit Room or Location of the artwork</string>
+    <string name="edit_description">Edit Description</string>
+    <string name="edit_year">Edit Year</string>
+    <string name="edit_artwork">Edit Artwork</string>
+
+    <!--home-->
+    <string name="home_main_image">Main image on home screen</string>
+    <string name="home_title">Museo Nacional Centro De Arte \"Reina Sofia\"</string>
+    <string name="home_intro">Although museums as public institutions remain important in the general scheme of creative industries, they have lost some of their influence, or at least their privileged position, in defining what is understood to be culture. Today\'s world of culture is shaped, on the one hand, by the prominent figures in the culture and communications industry and, on the other, by the diffuse magma of culture producers whose actions are governed by the subordination of their creative singularity. This subordination is manifested in artists having to sell their creative capacity or in their being expropriated of it.  In addition, we are in the midst of a systemic crisis to which the museum is not immune. If the economic paradigm based on speculation and easy money has proven unsustainable, it should also be clear that the primacy of the building and of art as spectacle over the museums artistic program has ceased to be valid.</string>
+
+    <!--activity_master_artworks_list-->
+    <string name="sort_list_by">Sort list by:</string>
+
+    <!--settings-->
+    <string name="settings_title">Settings</string>
+    <string name="settings_currency">Currency</string>
+
+    <!--activity_tickets-->
+    <string name="tickets_zero_value">0.00</string>
+    <string name="tickets_offline">You are currently offline and the application is using the default currency rates.</string>
+    <string name="tickets_title">Tickets</string>
+    <string name="tickets_settings_msg">*The currency can be modified from the application settings.</string>
+    <string name="tickets_adult">Adult</string>
+    <string name="tickets_child">Child</string>
+    <string name="tickets_student">Student</string>
+
+    <!--master_artwork_list_element-->
+    <string name="master_list_image_of_the_artwork">Image of the artwork.</string>
+    <string name="master_list_artwork_title">Artwork Title</string>
+    <string name="master_list_artist_name">Artist name</string>
+    <string name="master_list_artist_year">Artist year</string>
 
 </resources>

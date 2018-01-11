@@ -15,7 +15,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="#D9D9D9"
-            android:contentDescription="Image of the artwork."
+            android:contentDescription="@string/master_list_image_of_the_artwork"
             android:focusable="false" />
 
         <RelativeLayout
@@ -28,13 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="none"
                 android:focusable="false"
-                android:inputType="textMultiLine"
                 android:maxLines="2"
                 android:scrollHorizontally="false"
-                android:text="Artwork Title"
+                android:text="@string/master_list_artwork_title"
                 android:textSize="20sp" />
 
             <TextView
@@ -42,9 +42,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="60dp"
                 android:focusable="false"
-                android:text="Artist name"
+                android:text="@string/master_list_artist_name"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -53,9 +54,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="80dp"
                 android:focusable="false"
-                android:text="Artist year"
+                android:text="@string/master_list_artist_year"
                 android:textSize="15sp"
                 android:textStyle="italic" />
 

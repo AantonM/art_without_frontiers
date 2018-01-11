@@ -11,8 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="15dp"
-        android:text="Tickets"
+        android:text="@string/tickets_title"
         android:textColor="#000000"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="100dp">
 
         <TableRow
@@ -33,8 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:paddingRight="50dp"
-                android:text="Adult"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/tickets_adult"
                 android:textSize="20sp" />
 
             <TextView
@@ -42,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="0.00"
+                android:text="@string/tickets_zero_value"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -55,8 +58,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:paddingRight="50dp"
-                android:text="Child"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/tickets_child"
                 android:textSize="20sp" />
 
             <TextView
@@ -64,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="0.00"
+                android:text="@string/tickets_zero_value"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -77,8 +81,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:paddingRight="50dp"
-                android:text="Student"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/tickets_student"
                 android:textSize="20sp" />
 
             <TextView
@@ -86,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
-                android:text="0.00"
+                android:text="@string/tickets_zero_value"
                 android:textSize="20sp" />
 
         </TableRow>
@@ -96,11 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tablePrice"
-        android:layout_column="1"
         android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
-        android:paddingRight="70dp"
-        android:text="*The currency can be modified from the application settings."
+        android:text="@string/tickets_settings_msg"
         android:textSize="20sp"
         android:textStyle="italic" />
 
@@ -110,15 +114,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="false"
-        android:gravity="center"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        android:text="You are currently offline and the application is using the default currency rates."
+        android:gravity="center"
+        android:text="@string/tickets_offline"
         android:textAlignment="center"
         android:textColor="#A8190A"
         android:textSize="20sp"
         android:textStyle="italic"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>

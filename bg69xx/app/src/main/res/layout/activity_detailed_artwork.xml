@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/addArtworkLayout"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -18,12 +18,13 @@
             android:id="@+id/imgViewPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="280dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
-            android:contentDescription="Photo taken of the artwork"/>
+            android:contentDescription="@string/detailed_photo_taken_of_the_artwork"
+            android:maxHeight="280dp"
+            android:src="@drawable/ic_add_photo" />
 
         <TextView
             android:id="@+id/txtViewTitle"
@@ -32,13 +33,14 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/imgViewPicture"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:text="Title"
+            android:text="@string/detailed_title"
             android:textColor="#000000"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtViewArtist"
@@ -47,11 +49,12 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/txtViewTitle"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:text="Artist"
-            android:textSize="20sp"/>
+            android:text="@string/detailed_artist"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/txtViewYear"
@@ -60,12 +63,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/txtViewArtist"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textStyle="italic"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:text="Year"
-            android:textSize="20sp"/>
+            android:text="@string/detailed_year"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/txtViewRoom"
@@ -74,25 +78,28 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/txtViewYear"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:text="Room"
-            android:textSize="20sp"/>
+            android:text="@string/detailed_room"
+            android:textSize="20sp" />
 
         <RatingBar
             android:id="@+id/ratingViewRate"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_below="@id/txtViewRoom"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:numStars="5"
             android:scaleX="0.75"
             android:scaleY="0.75"
             android:stepSize="1.0"
-            android:transformPivotX="0dp"/>
+            android:transformPivotX="0dp" />
 
         <TextView
             android:id="@+id/txtViewDescription"
@@ -101,14 +108,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/ratingViewRate"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="100dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:text="Description"
-            android:textSize="20sp"
-            android:layout_marginBottom="100dp"/>
-
-
+            android:text="@string/detailed_description"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 </ScrollView>

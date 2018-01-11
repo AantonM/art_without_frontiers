@@ -21,7 +21,11 @@ android {
     lintOptions {
         abortOnError false
     }
-    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/preferences'] } }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res/preferences']
+        }
+    }
 }
 
 dependencies {
@@ -32,5 +36,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:support-vector-drawable:23.4.0'
     compile 'com.google.code.gson:gson:2.4'
-    androidTestCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
 }

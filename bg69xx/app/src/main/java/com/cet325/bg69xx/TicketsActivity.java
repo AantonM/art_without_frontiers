@@ -46,7 +46,10 @@ public class TicketsActivity extends BaseFrameActivity {
         displayTicketPrices(currencyRate);
     }
 
-
+    /***
+     * Check the value of the ticket by the local currency.
+     * @return
+     */
     private double checkCurrency() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String defaultCurrency = getString(R.string.default_currency);
@@ -59,7 +62,7 @@ public class TicketsActivity extends BaseFrameActivity {
         {
             TextView offlineMsg = (TextView) findViewById(R.id.offlineText);
             CurrencyHttpClient getCurrencyRatesRequest = new CurrencyHttpClient(defaultCurrency);
-            currentCurrencyRates = getCurrencyRatesRequest.getCurrencyRate(currentCurrency);
+            currentCurrencyRates = getCurrencyRatesRequest.getOnlineCurrencyRate(currentCurrency);
             offlineMsg.setVisibility(View.INVISIBLE);
 
             //if the API returns 0.0 (offline or down) use predefined currency rates

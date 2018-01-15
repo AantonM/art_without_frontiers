@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class MasterArtworksListActivity extends HomeActivity {
+public class MasterArtworksListActivity extends BaseFrameActivity    {
 
     private List<ArtworksDbMapper> artworksList = null;
     private ListView listView;

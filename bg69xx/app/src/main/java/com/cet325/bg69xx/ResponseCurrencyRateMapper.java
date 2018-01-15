@@ -3,10 +3,9 @@ package com.cet325.bg69xx;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by MitkovA on 09/01/2018.
+/***
+ * Mapper object for the currency rates
  */
-
 public class ResponseCurrencyRateMapper {
 
     private String base;

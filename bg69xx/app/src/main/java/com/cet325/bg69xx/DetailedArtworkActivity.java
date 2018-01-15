@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailedArtworkActivity extends HomeActivity {
+public class DetailedArtworkActivity extends BaseFrameActivity {
 
     private int artwork_id;
 

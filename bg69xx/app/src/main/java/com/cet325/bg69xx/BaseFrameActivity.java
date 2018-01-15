@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class BaseFrameActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
@@ -32,7 +33,7 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
         setupActionBar();
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.navigation_drawer_layout);
-        String[] osArray = { "View paintings", "Exhibitions", "Gallery map", "Open hours", "Location"};
+        String[] osArray = { "View artworks", "Exhibitions", "Gallery map", "Open hours", "Location"};
         mDrawerList = (ListView) findViewById(R.id.navList);
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, osArray);
         mDrawerList.setAdapter(mAdapter);
@@ -45,6 +46,10 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
                     //Have only one instance of this activity.
                     artworksListIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(artworksListIntent);
+                }
+                //extra options to fill the menu.
+                else if(position == 1 || position == 2 || position == 3 || position == 4){
+                    Toast.makeText(BaseFrameActivity.this, "To be implemented...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -114,16 +119,17 @@ public class BaseFrameActivity extends ActionBarActivity implements AdapterView.
             startActivity(settingsIntent);
         }
 
-        if(id == R.id.action_contacts){
-            //Do nothing.
-        }
-
         //check if the tickets button is selected
         if(id == R.id.tickets) {
             Intent ticketsIntent = new Intent(this, TicketsActivity.class);
             //Have only one instance of this activity.
             ticketsIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(ticketsIntent);
+        }
+
+        //extra options to fill the menu.
+        if(id == R.id.action_contacts || id == R.id.action_feedback || id == R.id.action_help){
+            Toast.makeText(BaseFrameActivity.this, "To be implemented...", Toast.LENGTH_SHORT).show();
         }
 
         return true;

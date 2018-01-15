@@ -20,6 +20,15 @@ public class CurrencyHttpClient {
 
     public CurrencyHttpClient(String base) {
         FULL_URL = BASE_URL + "/latest?base=" + base;
+    }
+
+    /***
+     * Get currency rates from Fixer.io API
+     *
+     * @param currentCurrency
+     * @return
+     */
+    public double getOnlineCurrencyRate(String currentCurrency){
 
         DownloadData data = new DownloadData();
 
@@ -31,18 +40,18 @@ public class CurrencyHttpClient {
             e.printStackTrace();
         }
 
+        double currencyRate = getCurrencyRate(currentCurrency);
+
+        return currencyRate;
     }
 
-    public double getCurrencyRate(String currencyCode){
-
-        if(response != null){
-            String rate = response.getRates().get(currencyCode);
-            return Double.valueOf((rate != null)?rate:"0.0");
-        }
-
-        return 0;
-    }
-
+    /***
+     * Get currency rates from predefined rates in raw/*.json
+     *
+     * @param stream
+     * @param currentCurrency
+     * @return
+     */
     public double getOfflineCurrencyRate(InputStream stream, String currentCurrency){
         StringBuffer buffer = new StringBuffer();
         Gson gson = new Gson();
@@ -69,6 +78,20 @@ public class CurrencyHttpClient {
     }
 
 
+    public double getCurrencyRate(String currencyCode){
+
+        if(response != null){
+            String rate = response.getRates().get(currencyCode);
+            return Double.valueOf((rate != null)?rate:"0.0");
+        }
+
+        return 0;
+    }
+
+    /***
+     * Make a call to external API to receive currency rates (Fixer.io)
+     *
+     */
     class DownloadData extends AsyncTask<Void, Void, ResponseCurrencyRateMapper> {
         @Override
         protected ResponseCurrencyRateMapper doInBackground(Void... voids) {

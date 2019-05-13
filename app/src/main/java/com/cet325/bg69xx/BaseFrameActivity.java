@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity ;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class BaseFrameActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
+public class BaseFrameActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     //params used for the left Navigation Drawer
     private ListView mDrawerList;

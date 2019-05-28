@@ -19,11 +19,11 @@ public class DatabaseStockPopulation extends HomeActivity {
 
     private static List<List<String>> artworksList;
 
-    public List<List<String>> getArtworksList(){
+    public List<List<String>> getArtworksList() {
         return artworksList;
     }
 
-    public DatabaseStockPopulation(Context currentContext, SQLiteDatabase db, String tableArtworks){
+    public DatabaseStockPopulation(Context currentContext, SQLiteDatabase db, String tableArtworks) {
         readStockArtworks(currentContext);
         insertStockArtworks(currentContext, tableArtworks, db);
     }
@@ -34,7 +34,7 @@ public class DatabaseStockPopulation extends HomeActivity {
      *
      * @param current
      */
-    private void readStockArtworks(Context current){
+    private void readStockArtworks(Context current) {
 
         artworksList = new ArrayList<>();
         artworksList.add(Arrays.asList(current.getResources().getStringArray(R.array.item_1)));
@@ -66,15 +66,20 @@ public class DatabaseStockPopulation extends HomeActivity {
     private void insertStockArtworks(Context current, String tableArtworks, SQLiteDatabase db) {
 
         //iterate trough all artworks
-        for(int i =0; i < artworksList.size(); i++) {
-            //get the full path of the artwork image
+        for (int i = 0; i < artworksList.size(); i++) {
+            //get the full path of the artwork artwork_image
             String imageURI = "drawable/artwork_" + artworksList.get(i).get(4);
-            //get the id of the image
+            //get the id of the artwork_image
             int imageResource = current.getResources().getIdentifier(imageURI, null, current.getPackageName());
-            //create a bitmap of the image
+            //create a bitmap of the artwork_image
             Bitmap imageBitmap = BitmapFactory.decodeResource(current.getResources(), imageResource);
-            //convert the image to array of bytes
-            byte[] imgBytes = imgBitmapToByteArray(imageBitmap);
+
+            byte[] imgBytes = new byte[0];
+            //convert the artwork_image to array of bytes
+            if (imageBitmap != null)
+            {
+                imgBytes = imgBitmapToByteArray(imageBitmap);
+            }
 
             //insert the artwork to the database
             db.execSQL("INSERT INTO " + tableArtworks + "(artist, title, room, description, image, year, rank, uuid) VALUES (?,?,?,?,?,?,?,?)",
@@ -95,7 +100,7 @@ public class DatabaseStockPopulation extends HomeActivity {
     /***
      * Convert bitmap to array of bytes which can be saved into the database as BLOB
      * @param bitmap
-     * @return an image as array of bytes.
+     * @return an artwork_image as array of bytes.
      */
     private static byte[] imgBitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
